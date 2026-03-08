@@ -102,8 +102,9 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #ede9fe;
-      color: #6d28d9;
+      background: rgba(109,40,217,0.15);
+      color: #c4b5fd;
+      border: 1px solid rgba(109,40,217,0.35);
       padding: 5px 16px;
       border-radius: 999px;
       font-size: 0.75rem;
@@ -127,37 +128,37 @@
     /* Section divider */
     .section-divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, #e2d9f3, transparent);
+      background: linear-gradient(90deg, transparent, rgba(109,40,217,0.35), transparent);
       margin: 0 auto;
       max-width: 600px;
     }
 
     /* Tip box */
     .tip-box {
-      background: linear-gradient(135deg, #fefce8, #fef9c3);
-      border-left: 4px solid #eab308;
+      background: rgba(234,179,8,0.08);
+      border-left: 4px solid rgba(202,138,4,0.6);
       border-radius: 0 12px 12px 0;
       padding: 1.25rem 1.5rem;
     }
     .warning-box {
-      background: linear-gradient(135deg, #fef2f2, #fee2e2);
-      border-left: 4px solid #ef4444;
+      background: rgba(239,68,68,0.08);
+      border-left: 4px solid rgba(239,68,68,0.5);
       border-radius: 0 12px 12px 0;
       padding: 1.25rem 1.5rem;
     }
     .info-box {
-      background: linear-gradient(135deg, #eff6ff, #dbeafe);
-      border-left: 4px solid #3b82f6;
+      background: rgba(59,130,246,0.08);
+      border-left: 4px solid rgba(59,130,246,0.5);
       border-radius: 0 12px 12px 0;
       padding: 1.25rem 1.5rem;
     }
 
     /* Session visual */
     .session-box {
-      border: 2px solid #6d28d9;
+      border: 2px solid rgba(109,40,217,0.5);
       border-radius: 12px;
       padding: 1rem;
-      background: linear-gradient(135deg, #faf5ff, #ede9fe);
+      background: rgba(109,40,217,0.08);
       position: relative;
     }
     .session-box .session-label {
@@ -171,15 +172,15 @@
       font-size: 0.75rem;
       font-weight: 700;
     }
-    .session-active { border-color: #059669; background: linear-gradient(135deg, #f0fdf4, #dcfce7); }
+    .session-active { border-color: rgba(5,150,105,0.6); background: rgba(16,185,129,0.08); }
     .session-active .session-label { background: #059669; }
-    .session-idle { border-color: #94a3b8; background: linear-gradient(135deg, #f8fafc, #f1f5f9); }
-    .session-idle .session-label { background: #94a3b8; }
+    .session-idle { border-color: rgba(148,163,184,0.25); background: rgba(255,255,255,0.03); }
+    .session-idle .session-label { background: #475569; }
 
     /* Skill card */
     .skill-card {
-      background: white;
-      border: 1px solid #e8e4f3;
+      background: #111118;
+      border: 1px solid rgba(109,40,217,0.15);
       border-radius: 16px;
       padding: 1.5rem;
       transition: all .3s ease;
@@ -207,13 +208,13 @@
     }
 
     /* Category badges */
-    .cat-search  { background: #eff6ff; color: #1d4ed8; }
-    .cat-finance { background: #fefce8; color: #92400e; }
-    .cat-info    { background: #f0fdf4; color: #166534; }
-    .cat-tool    { background: #fdf4ff; color: #86198f; }
-    .cat-lang    { background: #fff7ed; color: #9a3412; }
-    .cat-life    { background: #ecfeff; color: #164e63; }
-    .cat-adv     { background: #faf5ff; color: #5b21b6; }
+    .cat-search  { background: rgba(29,78,216,0.15); color: #93c5fd; }
+    .cat-finance { background: rgba(146,64,14,0.15); color: #fcd34d; }
+    .cat-info    { background: rgba(22,101,52,0.15); color: #86efac; }
+    .cat-tool    { background: rgba(134,25,143,0.15); color: #e879f9; }
+    .cat-lang    { background: rgba(154,52,18,0.15); color: #fdba74; }
+    .cat-life    { background: rgba(22,78,99,0.15); color: #67e8f9; }
+    .cat-adv     { background: rgba(91,33,182,0.15); color: #c4b5fd; }
 
     /* Nav link */
     .nav-link {
@@ -280,7 +281,7 @@
 
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="overflow-x-hidden" style="background:#080810;color:#e5e7eb;">
 
 <!-- ═══════════════════════════════════════════ HEADER ═══ -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 border-b border-white/10" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
@@ -381,7 +382,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════ SECTION 1: SESSIONS ═══ -->
-<section id="sessions" class="py-20 px-4 bg-white">
+<section id="sessions" class="py-20 px-4">
   <div class="max-w-5xl mx-auto">
 
     <!-- Header -->
@@ -389,11 +390,11 @@
       <div class="reveal mb-4">
         <span class="badge-pill" data-zh="SESSION 管理" data-en="SESSION MANAGEMENT">SESSION MANAGEMENT</span>
       </div>
-      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-black text-slate-900 mb-4"
+      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-black text-white mb-4"
         data-zh="用 Session 同時處理多件事" data-en="Handle Multiple Tasks with Sessions">
         用 Session 同時處理多件事
       </h2>
-      <p class="reveal reveal-delay-2 text-lg text-slate-500 max-w-2xl mx-auto"
+      <p class="reveal reveal-delay-2 text-lg text-gray-400 max-w-2xl mx-auto"
         data-zh="Session 是大閘蟹的核心概念，讓你像開多個瀏覽器分頁一樣，讓 AI 同時處理不同任務。"
         data-en="Sessions are a core concept — like browser tabs, they let AI handle different tasks simultaneously.">
         Session 是大閘蟹的核心概念，讓你像開多個瀏覽器分頁一樣，讓 AI 同時處理不同任務。
@@ -402,12 +403,12 @@
 
     <!-- What is a Session -->
     <div class="reveal mb-12">
-      <div class="bg-gradient-to-br from-violet-50 to-purple-50 border border-violet-200 rounded-2xl p-6 sm:p-8">
+      <div class="bg-violet-950/20 border border-violet-800/30 rounded-2xl p-6 sm:p-8">
         <div class="flex items-start gap-4 mb-6">
           <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white font-black text-xl flex-shrink-0">?</div>
           <div>
-            <h3 class="text-xl font-bold text-slate-900 mb-1" data-zh="什麼是 Session？" data-en="What is a Session?">什麼是 Session？</h3>
-            <p class="text-slate-600" data-zh="每個 Session 是一個獨立的對話上下文。" data-en="Each Session is an independent conversation context.">每個 Session 是一個獨立的對話上下文。</p>
+            <h3 class="text-xl font-bold text-white mb-1" data-zh="什麼是 Session？" data-en="What is a Session?">什麼是 Session？</h3>
+            <p class="text-gray-400" data-zh="每個 Session 是一個獨立的對話上下文。" data-en="Each Session is an independent conversation context.">每個 Session 是一個獨立的對話上下文。</p>
           </div>
         </div>
 
@@ -415,62 +416,62 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
           <div class="session-box session-active">
             <div class="session-label">Session A</div>
-            <div class="text-sm font-bold text-green-700 mb-1 mt-2">📈 股票監控</div>
-            <div class="text-xs text-green-600" data-zh="持續監控 TSLA、2330 即時報價" data-en="Monitoring TSLA, 2330 in real-time">持續監控 TSLA、2330 即時報價</div>
+            <div class="text-sm font-bold text-green-400 mb-1 mt-2">📈 股票監控</div>
+            <div class="text-xs text-green-400" data-zh="持續監控 TSLA、2330 即時報價" data-en="Monitoring TSLA, 2330 in real-time">持續監控 TSLA、2330 即時報價</div>
             <div class="mt-2 flex items-center gap-1.5">
               <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              <span class="text-xs text-green-600 font-semibold">Active</span>
+              <span class="text-xs text-green-400 font-semibold">Active</span>
             </div>
           </div>
           <div class="session-box">
             <div class="session-label">Session B</div>
-            <div class="text-sm font-bold text-violet-700 mb-1 mt-2">💬 日常問答</div>
-            <div class="text-xs text-violet-600" data-zh="翻譯、搜尋、一般對話" data-en="Translation, search, general chat">翻譯、搜尋、一般對話</div>
+            <div class="text-sm font-bold text-violet-400 mb-1 mt-2">💬 日常問答</div>
+            <div class="text-xs text-violet-400" data-zh="翻譯、搜尋、一般對話" data-en="Translation, search, general chat">翻譯、搜尋、一般對話</div>
             <div class="mt-2 flex items-center gap-1.5">
               <span class="w-2 h-2 bg-violet-500 rounded-full animate-pulse"></span>
-              <span class="text-xs text-violet-600 font-semibold">Active</span>
+              <span class="text-xs text-violet-400 font-semibold">Active</span>
             </div>
           </div>
           <div class="session-box session-idle">
             <div class="session-label" style="background:#64748b">Session C</div>
-            <div class="text-sm font-bold text-slate-600 mb-1 mt-2">📊 資料整理</div>
-            <div class="text-xs text-slate-500" data-zh="長時間資料分析任務（執行中）" data-en="Long-running data analysis task">長時間資料分析任務（執行中）</div>
+            <div class="text-sm font-bold text-gray-400 mb-1 mt-2">📊 資料整理</div>
+            <div class="text-xs text-gray-400" data-zh="長時間資料分析任務（執行中）" data-en="Long-running data analysis task">長時間資料分析任務（執行中）</div>
             <div class="mt-2 flex items-center gap-1.5">
               <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
-              <span class="text-xs text-amber-600 font-semibold">Running</span>
+              <span class="text-xs text-amber-400 font-semibold">Running</span>
             </div>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-          <div class="bg-white rounded-xl p-3 border border-violet-200 text-center">
+          <div class="bg-gray-800/50 rounded-xl p-3 border border-violet-800/30 text-center">
             <div class="text-2xl mb-1">🔀</div>
-            <div class="font-bold text-slate-800" data-zh="互不干擾" data-en="Isolated">互不干擾</div>
-            <div class="text-slate-500 text-xs mt-1" data-zh="各 Session 完全獨立" data-en="Fully isolated">各 Session 完全獨立</div>
+            <div class="font-bold text-gray-200" data-zh="互不干擾" data-en="Isolated">互不干擾</div>
+            <div class="text-gray-400 text-xs mt-1" data-zh="各 Session 完全獨立" data-en="Fully isolated">各 Session 完全獨立</div>
           </div>
-          <div class="bg-white rounded-xl p-3 border border-violet-200 text-center">
+          <div class="bg-gray-800/50 rounded-xl p-3 border border-violet-800/30 text-center">
             <div class="text-2xl mb-1">⚡</div>
-            <div class="font-bold text-slate-800" data-zh="同時並行" data-en="Parallel">同時並行</div>
-            <div class="text-slate-500 text-xs mt-1" data-zh="多任務同步執行" data-en="Multiple tasks in sync">多任務同步執行</div>
+            <div class="font-bold text-gray-200" data-zh="同時並行" data-en="Parallel">同時並行</div>
+            <div class="text-gray-400 text-xs mt-1" data-zh="多任務同步執行" data-en="Multiple tasks in sync">多任務同步執行</div>
           </div>
-          <div class="bg-white rounded-xl p-3 border border-violet-200 text-center">
+          <div class="bg-gray-800/50 rounded-xl p-3 border border-violet-800/30 text-center">
             <div class="text-2xl mb-1">🧠</div>
-            <div class="font-bold text-slate-800" data-zh="獨立記憶" data-en="Separate Memory">獨立記憶</div>
-            <div class="text-slate-500 text-xs mt-1" data-zh="各自有專屬上下文" data-en="Each has its own context">各自有專屬上下文</div>
+            <div class="font-bold text-gray-200" data-zh="獨立記憶" data-en="Separate Memory">獨立記憶</div>
+            <div class="text-gray-400 text-xs mt-1" data-zh="各自有專屬上下文" data-en="Each has its own context">各自有專屬上下文</div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- HOW TO USE -->
-    <h3 class="reveal text-2xl font-black text-slate-900 mb-8 text-center"
+    <h3 class="reveal text-2xl font-black text-white mb-8 text-center"
       data-zh="如何使用 Session" data-en="How to Use Sessions">如何使用 Session</h3>
 
     <!-- Sub-section: 建立新 Session -->
     <div class="reveal mb-10">
       <div class="flex items-center gap-3 mb-4">
         <div class="step-num">1</div>
-        <h4 class="text-xl font-bold text-slate-800" data-zh="建立新 Session" data-en="Create a New Session">建立新 Session</h4>
+        <h4 class="text-xl font-bold text-gray-200" data-zh="建立新 Session" data-en="Create a New Session">建立新 Session</h4>
       </div>
       <div class="space-y-4 ml-11">
         <div class="code-block">
@@ -484,7 +485,7 @@
           </div>
           <pre>/session new 股票監控</pre>
         </div>
-        <p class="text-slate-600 text-sm flex items-center gap-2">
+        <p class="text-gray-400 text-sm flex items-center gap-2">
           <span class="text-green-500 font-bold">→</span>
           <span data-zh="建立一個名為「股票監控」的 Session" data-en="Creates a Session named '股票監控'">建立一個名為「股票監控」的 Session</span>
         </p>
@@ -499,7 +500,7 @@
           </div>
           <pre>/session new 日常助理</pre>
         </div>
-        <p class="text-slate-600 text-sm flex items-center gap-2">
+        <p class="text-gray-400 text-sm flex items-center gap-2">
           <span class="text-green-500 font-bold">→</span>
           <span data-zh="再建立一個「日常助理」Session" data-en="Creates another Session named '日常助理'">再建立一個「日常助理」Session</span>
         </p>
@@ -510,7 +511,7 @@
     <div class="reveal mb-10">
       <div class="flex items-center gap-3 mb-4">
         <div class="step-num">2</div>
-        <h4 class="text-xl font-bold text-slate-800" data-zh="切換 Session" data-en="Switch Sessions">切換 Session</h4>
+        <h4 class="text-xl font-bold text-gray-200" data-zh="切換 Session" data-en="Switch Sessions">切換 Session</h4>
       </div>
       <div class="space-y-4 ml-11">
         <div class="code-block">
@@ -524,7 +525,7 @@
           </div>
           <pre>/session switch 股票監控</pre>
         </div>
-        <p class="text-slate-600 text-sm flex items-center gap-2">
+        <p class="text-gray-400 text-sm flex items-center gap-2">
           <span class="text-green-500 font-bold">→</span>
           <span data-zh="切換到「股票監控」Session，之後的對話都在這個 Session 進行"
                 data-en="Switch to '股票監控' — all subsequent messages go to this Session">切換到「股票監控」Session，之後的對話都在這個 Session 進行</span>
@@ -540,7 +541,7 @@
           </div>
           <pre>/session list</pre>
         </div>
-        <p class="text-slate-600 text-sm flex items-center gap-2">
+        <p class="text-gray-400 text-sm flex items-center gap-2">
           <span class="text-green-500 font-bold">→</span>
           <span data-zh="列出所有 Session 及其狀態" data-en="List all Sessions with their status">列出所有 Session 及其狀態</span>
         </p>
@@ -551,7 +552,7 @@
     <div class="reveal mb-12">
       <div class="flex items-center gap-3 mb-4">
         <div class="step-num">3</div>
-        <h4 class="text-xl font-bold text-slate-800" data-zh="刪除 Session" data-en="Delete a Session">刪除 Session</h4>
+        <h4 class="text-xl font-bold text-gray-200" data-zh="刪除 Session" data-en="Delete a Session">刪除 Session</h4>
       </div>
       <div class="space-y-4 ml-11">
         <div class="code-block">
@@ -566,7 +567,7 @@
           <pre>/session delete 股票監控</pre>
         </div>
         <div class="warning-box">
-          <p class="text-red-700 text-sm font-semibold flex items-start gap-2">
+          <p class="text-red-400 text-sm font-semibold flex items-start gap-2">
             <span class="text-base flex-shrink-0">⚠️</span>
             <span data-zh="刪除 Session 會同時清除該 Session 的所有對話記憶，無法復原。重要的 Session 請謹慎刪除。"
                   data-en="Deleting a Session also erases all its memory. This is irreversible. Be careful with important Sessions.">
@@ -579,31 +580,31 @@
 
     <!-- Use Case Cards -->
     <div class="reveal mb-6">
-      <h3 class="text-2xl font-black text-slate-900 mb-6 text-center"
+      <h3 class="text-2xl font-black text-white mb-6 text-center"
         data-zh="實際應用範例" data-en="Real-World Examples">實際應用範例</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
         <!-- Card 1 -->
-        <div class="bg-gradient-to-br from-yellow-50 to-orange-50 border border-orange-200 rounded-2xl p-5">
+        <div class="bg-orange-950/20 border border-orange-800/30 rounded-2xl p-5">
           <div class="text-3xl mb-3">💰</div>
-          <div class="font-black text-lg text-slate-900 mb-3"
+          <div class="font-black text-lg text-white mb-3"
             data-zh="財經監控 + 日常助理分離" data-en="Finance + Daily Assistant Split">
             財經監控 + 日常助理分離
           </div>
           <div class="space-y-2 mb-4">
-            <div class="bg-white rounded-xl p-3 border border-orange-200">
-              <div class="text-xs font-bold text-orange-600 mb-1">Session "財經"</div>
-              <div class="text-xs text-slate-600" data-zh="設定每日財經早報排程、股票提醒"
+            <div class="bg-gray-800/50 rounded-xl p-3 border border-orange-800/30">
+              <div class="text-xs font-bold text-orange-400 mb-1">Session "財經"</div>
+              <div class="text-xs text-gray-400" data-zh="設定每日財經早報排程、股票提醒"
                 data-en="Set up daily finance briefing schedule, stock alerts">設定每日財經早報排程、股票提醒</div>
             </div>
-            <div class="bg-white rounded-xl p-3 border border-orange-200">
-              <div class="text-xs font-bold text-violet-600 mb-1">Session "助理"</div>
-              <div class="text-xs text-slate-600" data-zh="日常問答、翻譯、摘要任務"
+            <div class="bg-gray-800/50 rounded-xl p-3 border border-orange-800/30">
+              <div class="text-xs font-bold text-violet-400 mb-1">Session "助理"</div>
+              <div class="text-xs text-gray-400" data-zh="日常問答、翻譯、摘要任務"
                 data-en="Daily Q&A, translation, summarization">日常問答、翻譯、摘要任務</div>
             </div>
           </div>
-          <div class="bg-green-50 border border-green-200 rounded-xl p-3">
-            <div class="text-xs text-green-700 font-semibold flex items-start gap-1.5">
+          <div class="bg-green-950/30 border border-green-800/30 rounded-xl p-3">
+            <div class="text-xs text-green-400 font-semibold flex items-start gap-1.5">
               <span>✅</span>
               <span data-zh="兩者互不影響，財經排程不會被日常對話打斷"
                     data-en="Fully independent — finance schedule never disrupted by daily chat">
@@ -614,26 +615,26 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-5">
+        <div class="bg-blue-950/20 border border-blue-800/30 rounded-2xl p-5">
           <div class="text-3xl mb-3">⚡</div>
-          <div class="font-black text-lg text-slate-900 mb-3"
+          <div class="font-black text-lg text-white mb-3"
             data-zh="長任務 + 即時查詢" data-en="Long Task + Instant Query">
             長任務 + 即時查詢
           </div>
           <div class="space-y-2 mb-4">
-            <div class="bg-white rounded-xl p-3 border border-blue-200">
+            <div class="bg-gray-800/50 rounded-xl p-3 border border-blue-800/30">
               <div class="text-xs font-bold text-blue-600 mb-1">Session "長任務"</div>
-              <div class="text-xs text-slate-600" data-zh="整理大量資料、分析報告（可能需要數分鐘）"
+              <div class="text-xs text-gray-400" data-zh="整理大量資料、分析報告（可能需要數分鐘）"
                 data-en="Processing large datasets, generating reports (may take minutes)">整理大量資料、分析報告（可能需要數分鐘）</div>
             </div>
-            <div class="bg-white rounded-xl p-3 border border-blue-200">
-              <div class="text-xs font-bold text-indigo-600 mb-1">Session "即時"</div>
-              <div class="text-xs text-slate-600" data-zh="同時進行其他查詢，不需等待長任務完成"
+            <div class="bg-gray-800/50 rounded-xl p-3 border border-blue-800/30">
+              <div class="text-xs font-bold text-indigo-400 mb-1">Session "即時"</div>
+              <div class="text-xs text-gray-400" data-zh="同時進行其他查詢，不需等待長任務完成"
                 data-en="Other queries run simultaneously, no waiting needed">同時進行其他查詢，不需等待長任務完成</div>
             </div>
           </div>
-          <div class="bg-green-50 border border-green-200 rounded-xl p-3">
-            <div class="text-xs text-green-700 font-semibold flex items-start gap-1.5">
+          <div class="bg-green-950/30 border border-green-800/30 rounded-xl p-3">
+            <div class="text-xs text-green-400 font-semibold flex items-start gap-1.5">
               <span>✅</span>
               <span data-zh="不再卡在等待，多工並行" data-en="No more waiting — true multitasking">
                 不再卡在等待，多工並行
@@ -643,26 +644,26 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-gradient-to-br from-purple-50 to-violet-50 border border-violet-200 rounded-2xl p-5">
+        <div class="bg-violet-950/20 border border-violet-800/30 rounded-2xl p-5">
           <div class="text-3xl mb-3">📁</div>
-          <div class="font-black text-lg text-slate-900 mb-3"
+          <div class="font-black text-lg text-white mb-3"
             data-zh="多專案管理" data-en="Multi-Project Management">
             多專案管理
           </div>
           <div class="space-y-2 mb-4">
-            <div class="bg-white rounded-xl p-3 border border-violet-200">
-              <div class="text-xs font-bold text-violet-600 mb-1">Session "專案A"</div>
-              <div class="text-xs text-slate-600" data-zh="追蹤 A 專案相關資料、待辦"
+            <div class="bg-gray-800/50 rounded-xl p-3 border border-violet-800/30">
+              <div class="text-xs font-bold text-violet-400 mb-1">Session "專案A"</div>
+              <div class="text-xs text-gray-400" data-zh="追蹤 A 專案相關資料、待辦"
                 data-en="Track Project A data and to-dos">追蹤 A 專案相關資料、待辦</div>
             </div>
-            <div class="bg-white rounded-xl p-3 border border-violet-200">
-              <div class="text-xs font-bold text-purple-600 mb-1">Session "專案B"</div>
-              <div class="text-xs text-slate-600" data-zh="追蹤 B 專案，各自有獨立記憶"
+            <div class="bg-gray-800/50 rounded-xl p-3 border border-violet-800/30">
+              <div class="text-xs font-bold text-purple-400 mb-1">Session "專案B"</div>
+              <div class="text-xs text-gray-400" data-zh="追蹤 B 專案，各自有獨立記憶"
                 data-en="Track Project B with its own separate memory">追蹤 B 專案，各自有獨立記憶</div>
             </div>
           </div>
-          <div class="bg-green-50 border border-green-200 rounded-xl p-3">
-            <div class="text-xs text-green-700 font-semibold flex items-start gap-1.5">
+          <div class="bg-green-950/30 border border-green-800/30 rounded-xl p-3">
+            <div class="text-xs text-green-400 font-semibold flex items-start gap-1.5">
               <span>✅</span>
               <span data-zh="就像有多個專屬助理，各司其職" data-en="Like having dedicated assistants for each project">
                 就像有多個專屬助理，各司其職
@@ -677,33 +678,33 @@
     <!-- Tips Box -->
     <div class="reveal">
       <div class="tip-box">
-        <h4 class="font-black text-yellow-800 mb-3 flex items-center gap-2">
+        <h4 class="font-black text-yellow-400 mb-3 flex items-center gap-2">
           <span>💡</span>
           <span data-zh="Session 使用技巧" data-en="Session Tips">Session 使用技巧</span>
         </h4>
         <ul class="space-y-2">
-          <li class="flex items-start gap-2 text-yellow-800 text-sm">
+          <li class="flex items-start gap-2 text-yellow-400 text-sm">
             <span class="font-bold mt-0.5">•</span>
             <span data-zh="Session 名稱建議有意義（用途/專案名），方便記憶"
                   data-en="Use meaningful Session names (purpose/project) for easy recall">
               Session 名稱建議有意義（用途/專案名），方便記憶
             </span>
           </li>
-          <li class="flex items-start gap-2 text-yellow-800 text-sm">
+          <li class="flex items-start gap-2 text-yellow-400 text-sm">
             <span class="font-bold mt-0.5">•</span>
             <span data-zh="重要 Session 不要隨意刪除，記憶會一起消失"
                   data-en="Don't delete important Sessions — their memory disappears too">
               重要 Session 不要隨意刪除，記憶會一起消失
             </span>
           </li>
-          <li class="flex items-start gap-2 text-yellow-800 text-sm">
+          <li class="flex items-start gap-2 text-yellow-400 text-sm">
             <span class="font-bold mt-0.5">•</span>
             <span data-zh="切換 Session 前可以先 /session list 確認有哪些"
                   data-en="Run /session list before switching to confirm which Sessions exist">
               切換 Session 前可以先 /session list 確認有哪些
             </span>
           </li>
-          <li class="flex items-start gap-2 text-yellow-800 text-sm">
+          <li class="flex items-start gap-2 text-yellow-400 text-sm">
             <span class="font-bold mt-0.5">•</span>
             <span data-zh="排程任務建議放在獨立 Session，避免被日常對話干擾"
                   data-en="Put scheduled tasks in their own Session to avoid interruption from daily chat">
@@ -720,18 +721,18 @@
 <div class="section-divider"></div>
 
 <!-- ═══════════════════════════════════════════ SECTION 2: INSTALL SKILLS ═══ -->
-<section id="install-skills" class="py-20 px-4 bg-slate-50">
+<section id="install-skills" class="py-20 px-4">
   <div class="max-w-5xl mx-auto">
 
     <div class="text-center mb-14">
       <div class="reveal mb-4">
         <span class="badge-pill" data-zh="技能管理" data-en="SKILL MANAGEMENT">SKILL MANAGEMENT</span>
       </div>
-      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-black text-slate-900 mb-4"
+      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-black text-white mb-4"
         data-zh="透過 ClaWHub 安裝技能" data-en="Install Skills via ClaWHub">
         透過 ClaWHub 安裝技能
       </h2>
-      <p class="reveal reveal-delay-2 text-lg text-slate-500 max-w-2xl mx-auto"
+      <p class="reveal reveal-delay-2 text-lg text-gray-400 max-w-2xl mx-auto"
         data-zh="Skills 是大閘蟹的插件系統，讓你無限擴充 AI 的能力。"
         data-en="Skills are Hairy Crab's plugin system — infinitely expand AI capabilities.">
         Skills 是大閘蟹的插件系統，讓你無限擴充 AI 的能力。
@@ -740,13 +741,13 @@
 
     <!-- What is ClaWHub -->
     <div class="reveal mb-12">
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+      <div class="bg-gray-900 border border-gray-700/50 rounded-2xl p-6 sm:p-8">
         <div class="flex items-start gap-4">
           <div class="w-14 h-14 bg-gradient-to-br from-accent to-violet-400 rounded-xl flex items-center justify-center text-white text-2xl flex-shrink-0">🏪</div>
           <div>
-            <h3 class="text-xl font-bold text-slate-900 mb-2"
+            <h3 class="text-xl font-bold text-white mb-2"
               data-zh="什麼是 ClaWHub？" data-en="What is ClaWHub?">什麼是 ClaWHub？</h3>
-            <p class="text-slate-600 leading-relaxed"
+            <p class="text-gray-400 leading-relaxed"
               data-zh="ClaWHub 是大閘蟹的技能市集，類似 App Store。你可以在 Telegram 對話中直接安裝、移除、更新技能，無需登入任何後台。"
               data-en="ClaWHub is Hairy Crab's skill marketplace — like an App Store. Install, remove, and update skills directly from your Telegram conversation, no backend login required.">
               ClaWHub 是大閘蟹的技能市集，類似 App Store。你可以在 Telegram 對話中直接安裝、移除、更新技能，無需登入任何後台。
@@ -756,23 +757,23 @@
       </div>
     </div>
 
-    <h3 class="reveal text-2xl font-black text-slate-900 mb-8 text-center"
+    <h3 class="reveal text-2xl font-black text-white mb-8 text-center"
       data-zh="三種安裝方式" data-en="3 Ways to Install Skills">三種安裝方式</h3>
 
     <!-- Method 1 -->
     <div class="reveal mb-10">
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-gray-900 rounded-2xl border border-gray-700/50 overflow-hidden">
         <div class="bg-gradient-to-r from-violet-600 to-purple-600 px-6 py-4 flex items-center gap-3">
           <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white font-black text-sm">1</div>
           <h4 class="text-white font-bold text-lg" data-zh="直接告訴 AI（最簡單）" data-en="Just Tell the AI (Easiest)">直接告訴 AI（最簡單）</h4>
         </div>
         <div class="p-6">
-          <p class="text-slate-600 mb-5"
+          <p class="text-gray-400 mb-5"
             data-zh="最直觀的方式：直接用自然語言告訴大閘蟹你想要什麼，它會自動幫你執行。"
             data-en="The most intuitive way: just tell Hairy Crab in natural language, and it handles the rest.">
             最直觀的方式：直接用自然語言告訴大閘蟹你想要什麼，它會自動幫你執行。
           </p>
-          <div class="bg-slate-900 rounded-xl p-5 space-y-3">
+          <div class="bg-gray-950 rounded-xl p-5 space-y-3">
             <div class="flex items-start gap-3">
               <span class="text-blue-400 font-bold text-sm flex-shrink-0 mt-0.5">你：</span>
               <span class="text-green-300 text-sm" data-zh="幫我安裝 stock-info-explorer 技能" data-en="Install the stock-info-explorer skill for me">幫我安裝 stock-info-explorer 技能</span>
@@ -783,7 +784,7 @@
             </div>
           </div>
           <div class="mt-4 info-box">
-            <p class="text-blue-700 text-sm flex items-start gap-2">
+            <p class="text-blue-400 text-sm flex items-start gap-2">
               <span class="flex-shrink-0">ℹ️</span>
               <span data-zh="AI 會自動執行安裝並確認結果。如果有錯誤，也會自動嘗試修復。"
                     data-en="AI auto-runs the install and confirms the result. If errors occur, it will attempt fixes automatically.">
@@ -797,13 +798,13 @@
 
     <!-- Method 2 -->
     <div class="reveal mb-10">
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-gray-900 rounded-2xl border border-gray-700/50 overflow-hidden">
         <div class="bg-gradient-to-r from-slate-700 to-slate-900 px-6 py-4 flex items-center gap-3">
           <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white font-black text-sm">2</div>
           <h4 class="text-white font-bold text-lg" data-zh="直接在伺服器執行指令" data-en="Run Commands on Server Directly">直接在伺服器執行指令</h4>
         </div>
         <div class="p-6">
-          <p class="text-slate-600 mb-5"
+          <p class="text-gray-400 mb-5"
             data-zh="進階用戶可以透過 SSH 直接在伺服器執行 clawhub 指令。"
             data-en="Advanced users can SSH into the server and run clawhub commands directly.">
             進階用戶可以透過 SSH 直接在伺服器執行 clawhub 指令。
@@ -839,7 +840,7 @@ clawhub list
 clawhub search KEYWORD</pre>
           </div>
           <div class="mt-4 tip-box">
-            <p class="text-yellow-800 text-sm flex items-start gap-2">
+            <p class="text-yellow-400 text-sm flex items-start gap-2">
               <span class="flex-shrink-0">💡</span>
               <span data-zh="部分技能需要加上 --force 參數，這是因為 VirusTotal 對某些技能有誤判，並非真的有安全問題。"
                     data-en="Some skills require the --force flag due to false positives from VirusTotal scanning — there's no actual security issue.">
@@ -853,18 +854,18 @@ clawhub search KEYWORD</pre>
 
     <!-- Method 3 -->
     <div class="reveal mb-6">
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-gray-900 rounded-2xl border border-gray-700/50 overflow-hidden">
         <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center gap-3">
           <div class="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white font-black text-sm">3</div>
           <h4 class="text-white font-bold text-lg" data-zh="讓 AI 自建技能（skill-creator）" data-en="Let AI Build Custom Skills (skill-creator)">讓 AI 自建技能（skill-creator）</h4>
         </div>
         <div class="p-6">
-          <p class="text-slate-600 mb-5"
+          <p class="text-gray-400 mb-5"
             data-zh="安裝 skill-creator 技能後，你可以告訴 AI 你想要什麼功能，它會自動開發、測試並安裝。"
             data-en="After installing skill-creator, just describe what you want — AI will develop, test, and install it automatically.">
             安裝 skill-creator 技能後，你可以告訴 AI 你想要什麼功能，它會自動開發、測試並安裝。
           </p>
-          <div class="bg-slate-900 rounded-xl p-5 space-y-3">
+          <div class="bg-gray-950 rounded-xl p-5 space-y-3">
             <div class="flex items-start gap-3">
               <span class="text-blue-400 font-bold text-sm flex-shrink-0 mt-0.5">你：</span>
               <span class="text-green-300 text-sm" data-zh="幫我做一個每天爬取 PTT 科技板熱帖、整理 5 條重點的技能"
@@ -877,7 +878,7 @@ clawhub search KEYWORD</pre>
               <span class="text-slate-300 text-sm" data-zh="好的，我來幫你建立這個技能，正在分析 PTT 結構..." data-en="Got it, building this skill — analyzing PTT structure now...">好的，我來幫你建立這個技能，正在分析 PTT 結構...</span>
             </div>
             <div class="flex items-start gap-3">
-              <span class="text-slate-500 font-bold text-xs flex-shrink-0 mt-0.5 font-mono">[AI 自動寫程式、測試、安裝]</span>
+              <span class="text-gray-400 font-bold text-xs flex-shrink-0 mt-0.5 font-mono">[AI 自動寫程式、測試、安裝]</span>
             </div>
             <div class="flex items-start gap-3">
               <span class="text-violet-400 font-bold text-sm flex-shrink-0 mt-0.5">🦀：</span>
@@ -887,8 +888,8 @@ clawhub search KEYWORD</pre>
               </span>
             </div>
           </div>
-          <div class="mt-4 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl p-4">
-            <p class="text-emerald-700 text-sm font-semibold flex items-start gap-2">
+          <div class="mt-4 bg-emerald-950/30 border border-emerald-800/30 rounded-xl p-4">
+            <p class="text-emerald-400 text-sm font-semibold flex items-start gap-2">
               <span class="flex-shrink-0">✨</span>
               <span data-zh="skill-creator 讓大閘蟹的能力真正無限。只要你想得到，都可以讓它幫你開發。"
                     data-en="skill-creator makes Hairy Crab's capabilities truly unlimited. If you can imagine it, it can build it.">
@@ -906,16 +907,16 @@ clawhub search KEYWORD</pre>
 <div class="section-divider"></div>
 
 <!-- ═══════════════════════════════════════════ SECTION 3: RECOMMENDED SKILLS ═══ -->
-<section id="recommended-skills" class="py-20 px-4 bg-white">
+<section id="recommended-skills" class="py-20 px-4">
   <div class="max-w-6xl mx-auto">
 
     <div class="text-center mb-14">
       <div class="reveal mb-4">
         <span class="badge-pill" data-zh="推薦技能" data-en="RECOMMENDED SKILLS">RECOMMENDED SKILLS</span>
       </div>
-      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-black text-slate-900 mb-4"
+      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-black text-white mb-4"
         data-zh="推薦技能清單" data-en="Recommended Skills List">推薦技能清單</h2>
-      <p class="reveal reveal-delay-2 text-lg text-slate-500 max-w-2xl mx-auto"
+      <p class="reveal reveal-delay-2 text-lg text-gray-400 max-w-2xl mx-auto"
         data-zh="以下是精選的實用技能，覆蓋日常使用的核心需求"
         data-en="A curated list of practical skills covering core everyday needs.">
         以下是精選的實用技能，覆蓋日常使用的核心需求
@@ -928,15 +929,15 @@ clawhub search KEYWORD</pre>
       <!-- 1. ddg-web-search -->
       <div class="skill-card reveal">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-blue-100">🔍</div>
+          <div class="skill-icon-circle bg-blue-900/40">🔍</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">ddg-web-search</h4>
+              <h4 class="font-black text-white text-base">ddg-web-search</h4>
               <span class="cat-search text-xs font-bold px-2 py-0.5 rounded-full" data-zh="搜尋" data-en="Search">搜尋</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="DuckDuckGo 即時搜尋，不需要任何 API Key。詢問最新資訊時自動觸發。"
           data-en="Real-time DuckDuckGo search, no API Key needed. Auto-triggers when you ask about current events.">
           DuckDuckGo 即時搜尋，不需要任何 API Key。詢問最新資訊時自動觸發。
@@ -945,13 +946,13 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install ddg-web-search</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="無需 API Key" data-en="No API Key">無需 API Key</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-violet-100 text-violet-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-violet-900/40 text-violet-300 px-2.5 py-1 rounded-full font-semibold">
             ⭐ <span data-zh="預裝推薦" data-en="Pre-installed">預裝推薦</span>
           </span>
         </div>
@@ -960,15 +961,15 @@ clawhub search KEYWORD</pre>
       <!-- 2. stock-info-explorer -->
       <div class="skill-card reveal reveal-delay-1">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-yellow-100">📈</div>
+          <div class="skill-icon-circle bg-yellow-900/40">📈</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">stock-info-explorer</h4>
+              <h4 class="font-black text-white text-base">stock-info-explorer</h4>
               <span class="cat-finance text-xs font-bold px-2 py-0.5 rounded-full" data-zh="金融" data-en="Finance">金融</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="美股、台股即時報價。支援 TSLA、台積電 (2330)、ETF 等，基於 Yahoo Finance。"
           data-en="Real-time US and Taiwan stock quotes. Supports TSLA, TSMC (2330), ETFs, and more via Yahoo Finance.">
           美股、台股即時報價。支援 TSLA、台積電 (2330)、ETF 等，基於 Yahoo Finance。
@@ -977,13 +978,13 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install --force stock-info-explorer</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="即時數據" data-en="Live Data">即時數據</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-amber-900/40 text-amber-300 px-2.5 py-1 rounded-full font-semibold">
             ⚠️ <span data-zh="需 uv" data-en="Requires uv">需 uv</span>
           </span>
         </div>
@@ -992,15 +993,15 @@ clawhub search KEYWORD</pre>
       <!-- 3. crypto-market-data -->
       <div class="skill-card reveal reveal-delay-2">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-orange-100" style="font-size:1.3rem;font-weight:900;color:#f97316">₿</div>
+          <div class="skill-icon-circle bg-orange-900/40" style="font-size:1.3rem;font-weight:900;color:#f97316">₿</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">crypto-market-data</h4>
+              <h4 class="font-black text-white text-base">crypto-market-data</h4>
               <span class="cat-finance text-xs font-bold px-2 py-0.5 rounded-full" data-zh="金融" data-en="Finance">金融</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="主流加密貨幣即時行情，BTC、ETH、SOL 等，含 24h 漲跌幅。"
           data-en="Live prices for major crypto: BTC, ETH, SOL and more, with 24h change.">
           主流加密貨幣即時行情，BTC、ETH、SOL 等，含 24h 漲跌幅。
@@ -1009,10 +1010,10 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install --force crypto-market-data</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="即時數據" data-en="Live Data">即時數據</span>
           </span>
         </div>
@@ -1021,15 +1022,15 @@ clawhub search KEYWORD</pre>
       <!-- 4. news-summary -->
       <div class="skill-card reveal">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-emerald-100">📰</div>
+          <div class="skill-icon-circle bg-emerald-900/40">📰</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">news-summary</h4>
+              <h4 class="font-black text-white text-base">news-summary</h4>
               <span class="cat-info text-xs font-bold px-2 py-0.5 rounded-full" data-zh="資訊" data-en="Info">資訊</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="指定主題的今日新聞摘要，AI 自動搜尋並整理成重點列表。"
           data-en="Today's news summary on any topic — AI auto-searches and compiles key points.">
           指定主題的今日新聞摘要，AI 自動搜尋並整理成重點列表。
@@ -1038,10 +1039,10 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install --force news-summary</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="支援任意主題" data-en="Any Topic">支援任意主題</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="繁中支援" data-en="Traditional Chinese">繁中支援</span>
           </span>
         </div>
@@ -1050,15 +1051,15 @@ clawhub search KEYWORD</pre>
       <!-- 5. youtube-transcript -->
       <div class="skill-card reveal reveal-delay-1">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-red-100">🎬</div>
+          <div class="skill-icon-circle bg-red-900/40">🎬</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">youtube-transcript</h4>
+              <h4 class="font-black text-white text-base">youtube-transcript</h4>
               <span class="cat-tool text-xs font-bold px-2 py-0.5 rounded-full" data-zh="工具" data-en="Tool">工具</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="貼入 YouTube 網址，自動擷取字幕並整理重點，省時省力。"
           data-en="Paste a YouTube URL — auto-extracts subtitles and summarizes key points. Huge time-saver.">
           貼入 YouTube 網址，自動擷取字幕並整理重點，省時省力。
@@ -1067,10 +1068,10 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install youtube-transcript</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="支援多語言字幕" data-en="Multi-language Subtitles">支援多語言字幕</span>
           </span>
         </div>
@@ -1079,15 +1080,15 @@ clawhub search KEYWORD</pre>
       <!-- 6. translate -->
       <div class="skill-card reveal reveal-delay-2">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-orange-100">🌐</div>
+          <div class="skill-icon-circle bg-orange-900/40">🌐</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">translate</h4>
+              <h4 class="font-black text-white text-base">translate</h4>
               <span class="cat-lang text-xs font-bold px-2 py-0.5 rounded-full" data-zh="語言" data-en="Language">語言</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="多語言互譯，中英日韓等，AI 驅動比傳統翻譯更自然流暢。"
           data-en="Multi-language translation (Chinese, English, Japanese, Korean, etc.) — AI-powered for natural fluency.">
           多語言互譯，中英日韓等，AI 驅動比傳統翻譯更自然流暢。
@@ -1096,10 +1097,10 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install translate</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="AI 驅動" data-en="AI-Powered">AI 驅動</span>
           </span>
         </div>
@@ -1108,15 +1109,15 @@ clawhub search KEYWORD</pre>
       <!-- 7. summarize -->
       <div class="skill-card reveal">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-indigo-100">📄</div>
+          <div class="skill-icon-circle bg-indigo-900/40">📄</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">summarize</h4>
+              <h4 class="font-black text-white text-base">summarize</h4>
               <span class="cat-tool text-xs font-bold px-2 py-0.5 rounded-full" data-zh="工具" data-en="Tool">工具</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="長文摘要整理，貼入文章、報告、合約，快速提取重點。"
           data-en="Summarize long texts — paste articles, reports, or contracts and get key points instantly.">
           長文摘要整理，貼入文章、報告、合約，快速提取重點。
@@ -1125,10 +1126,10 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install summarize</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="支援超長文本" data-en="Ultra-long Text">支援超長文本</span>
           </span>
         </div>
@@ -1137,15 +1138,15 @@ clawhub search KEYWORD</pre>
       <!-- 8. weather -->
       <div class="skill-card reveal reveal-delay-1">
         <div class="flex items-start gap-3 mb-4">
-          <div class="skill-icon-circle bg-cyan-100">🌤️</div>
+          <div class="skill-icon-circle bg-cyan-900/40">🌤️</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">weather</h4>
+              <h4 class="font-black text-white text-base">weather</h4>
               <span class="cat-life text-xs font-bold px-2 py-0.5 rounded-full" data-zh="生活" data-en="Lifestyle">生活</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="全球城市即時天氣查詢，基於 Open-Meteo，不需要任何 API Key。"
           data-en="Real-time global weather powered by Open-Meteo — no API Key required.">
           全球城市即時天氣查詢，基於 Open-Meteo，不需要任何 API Key。
@@ -1154,32 +1155,32 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install weather</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="免費" data-en="Free">免費</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-green-900/40 text-green-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="無需 API Key" data-en="No API Key">無需 API Key</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-violet-100 text-violet-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-violet-900/40 text-violet-300 px-2.5 py-1 rounded-full font-semibold">
             ⭐ <span data-zh="預裝推薦" data-en="Pre-installed">預裝推薦</span>
           </span>
         </div>
       </div>
 
       <!-- 9. skill-creator -->
-      <div class="skill-card reveal reveal-delay-2" style="border-color: #a78bfa; background: linear-gradient(135deg, #faf5ff, #fff);">
+      <div class="skill-card reveal reveal-delay-2" style="border-color: rgba(167,139,250,0.4); background: rgba(109,40,217,0.1);">
         <div class="flex items-start gap-3 mb-4">
           <div class="skill-icon-circle" style="background: linear-gradient(135deg,#6d28d9,#a78bfa);">
             <span style="font-size:1.4rem">🛠️</span>
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
-              <h4 class="font-black text-slate-900 text-base">skill-creator</h4>
+              <h4 class="font-black text-white text-base">skill-creator</h4>
               <span class="cat-adv text-xs font-bold px-2 py-0.5 rounded-full" data-zh="進階" data-en="Advanced">進階</span>
             </div>
           </div>
         </div>
-        <p class="text-slate-600 text-sm leading-relaxed mb-4"
+        <p class="text-gray-400 text-sm leading-relaxed mb-4"
           data-zh="讓 AI 幫你自動開發新技能。告訴 AI 你的需求，它寫程式、測試、安裝，一條龍完成。"
           data-en="Let AI auto-build new skills. Describe what you need — it codes, tests, and installs, end to end.">
           讓 AI 幫你自動開發新技能。告訴 AI 你的需求，它寫程式、測試、安裝，一條龍完成。
@@ -1188,10 +1189,10 @@ clawhub search KEYWORD</pre>
           <pre style="padding: 0.75rem 1rem; font-size:0.8rem">clawhub install --force skill-creator</pre>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1 text-xs bg-violet-100 text-violet-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-violet-900/40 text-violet-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="無限擴充" data-en="Unlimited Extension">無限擴充</span>
           </span>
-          <span class="inline-flex items-center gap-1 text-xs bg-violet-100 text-violet-700 px-2.5 py-1 rounded-full font-semibold">
+          <span class="inline-flex items-center gap-1 text-xs bg-violet-900/40 text-violet-300 px-2.5 py-1 rounded-full font-semibold">
             ✅ <span data-zh="自然語言操作" data-en="Natural Language">自然語言操作</span>
           </span>
         </div>
@@ -1201,7 +1202,7 @@ clawhub search KEYWORD</pre>
 
     <!-- One-click install all -->
     <div class="reveal">
-      <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-xl">
+      <div class="bg-gray-950 rounded-2xl overflow-hidden shadow-xl">
         <div class="px-6 py-4 border-b border-slate-700 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div class="code-dots">
@@ -1241,7 +1242,7 @@ clawhub install --force skill-creator stock-info-explorer news-summary crypto-ma
     </p>
     <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
       <a href="./install.html"
-        class="inline-flex items-center justify-center gap-2 bg-white text-accent font-black px-8 py-4 rounded-full text-base hover:bg-violet-50 transition-all hover:scale-105 shadow-lg">
+        class="inline-flex items-center justify-center gap-2 bg-white text-violet-700 font-black px-8 py-4 rounded-full text-base hover:bg-violet-100 transition-all hover:scale-105 shadow-lg">
         📦 <span data-zh="安裝教學" data-en="Install Guide">安裝教學</span>
       </a>
       <a href="./guide.html"
