@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ｜大閘蟹 🦀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans HK"', 'sans-serif'] },
+          colors: {
+            accent: {
+              DEFAULT: '#6d28d9',
+              50:  '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans HK', sans-serif; background: #0f0a1e; color: #e2e8f0; }
+
+    /* Sticky header blur */
+    .header-blur { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+
+    /* Mobile drawer transition */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #mobile-menu.open { max-height: 600px; }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(109,40,217,0.45) 0%, rgba(15,10,30,0) 70%),
+                  linear-gradient(180deg, #0f0a1e 0%, #0f0a1e 100%);
+    }
+
+    /* FAQ accordion */
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-body.open { max-height: 600px; }
+
+    .faq-chevron { transition: transform 0.3s ease; }
+    .faq-chevron.open { transform: rotate(180deg); }
+
+    /* Pill active state */
+    .pill { transition: all 0.2s ease; cursor: pointer; }
+    .pill.active {
+      background: #6d28d9;
+      color: #fff;
+      border-color: #6d28d9;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Card hover */
+    .faq-card { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .faq-card:hover { border-color: rgba(109,40,217,0.5); box-shadow: 0 0 0 1px rgba(109,40,217,0.15); }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa, #6d28d9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Nav link hover */
+    .nav-link { position: relative; transition: color 0.2s; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 1px;
+      background: #6d28d9;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-link:hover { color: #a78bfa; }
+    .nav-link.active-page { color: #a78bfa; }
+    .nav-link.active-page::after { transform: scaleX(1); }
+
+    /* CTA glow */
+    .cta-glow { box-shadow: 0 0 40px rgba(109,40,217,0.3); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f0a1e; }
+    ::-webkit-scrollbar-thumb { background: #6d28d9; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     STICKY HEADER
+══════════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-50 header-blur bg-[#0f0a1e]/80 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="./landing.html" class="flex items-center gap-2 flex-shrink-0">
+        <span class="text-2xl">🦀</span>
+        <span class="font-bold text-lg tracking-tight text-white">大閘蟹</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+        <a href="./landing.html#scenarios" class="nav-link" data-i18n="nav_scenarios">使用情境</a>
+        <a href="./landing.html#features"  class="nav-link" data-i18n="nav_features">功能</a>
+        <a href="./landing.html#pricing"   class="nav-link" data-i18n="nav_pricing">方案</a>
+        <a href="./guide.html"             class="nav-link" data-i18n="nav_guide">步驟教學</a>
+        <a href="./install.html"           class="nav-link" data-i18n="nav_install">安裝教學</a>
+        <a href="./advanced.html"          class="nav-link" data-i18n="nav_advanced">進階功能</a>
+        <a href="./faq.html"               class="nav-link active-page" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-3">
+        <!-- Lang button -->
+        <button id="lang-btn"
+          class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border border-accent/50 text-accent hover:bg-accent/10 transition-colors"
+          onclick="toggleLang()">EN</button>
+
+        <!-- Mobile CTA -->
+        <a href="./landing.html#pricing"
+          class="md:hidden px-3 py-1.5 rounded-full bg-accent text-white text-xs font-semibold"
+          data-i18n="nav_cta">查看方案</a>
+
+        <!-- Hamburger -->
+        <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+          onclick="toggleMenu()" aria-label="選單">
+          <svg id="icon-menu" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="3" y1="6"  x2="21" y2="6"  stroke-linecap="round"/>
+            <line x1="3" y1="12" x2="21" y2="12" stroke-linecap="round"/>
+            <line x1="3" y1="18" x2="21" y2="18" stroke-linecap="round"/>
+          </svg>
+          <svg id="icon-close" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="4" y1="4" x2="20" y2="20" stroke-linecap="round"/>
+            <line x1="20" y1="4" x2="4"  y2="20" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="md:hidden border-t border-white/5 bg-[#0f0a1e]/95">
+    <nav class="flex flex-col px-6 py-4 gap-4 text-sm text-slate-300">
+      <a href="./landing.html#scenarios" class="hover:text-accent transition-colors" data-i18n="nav_scenarios" onclick="closeMenu()">使用情境</a>
+      <a href="./landing.html#features"  class="hover:text-accent transition-colors" data-i18n="nav_features"  onclick="closeMenu()">功能</a>
+      <a href="./landing.html#pricing"   class="hover:text-accent transition-colors" data-i18n="nav_pricing"   onclick="closeMenu()">方案</a>
+      <a href="./guide.html"             class="hover:text-accent transition-colors" data-i18n="nav_guide"     onclick="closeMenu()">步驟教學</a>
+      <a href="./install.html"           class="hover:text-accent transition-colors" data-i18n="nav_install"   onclick="closeMenu()">安裝教學</a>
+      <a href="./advanced.html"          class="hover:text-accent transition-colors" data-i18n="nav_advanced"  onclick="closeMenu()">進階功能</a>
+      <a href="./faq.html"               class="text-accent font-medium"            data-i18n="nav_faq"       onclick="closeMenu()">FAQ</a>
+      <div class="pt-2 border-t border-white/10">
+        <button onclick="toggleLang(); closeMenu()"
+          class="flex items-center gap-2 text-accent text-xs font-semibold">
+          <span id="lang-btn-mobile">EN</span>
+          <span class="text-slate-400" data-i18n="lang_switch_label">切換語言</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hero-gradient pt-32 pb-20 text-center">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="reveal inline-block mb-6">
+      <span class="px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase border border-accent/40 text-accent bg-accent/10">
+        HELP &amp; FAQ
+      </span>
+    </div>
+    <h1 class="reveal text-5xl sm:text-6xl font-black mb-5 leading-tight" style="transition-delay:0.08s">
+      <span class="text-white" data-i18n="hero_title">常見問題</span>
+    </h1>
+    <p class="reveal text-slate-400 text-lg" style="transition-delay:0.14s" data-i18n="hero_sub">
+      找不到答案？直接聯繫我們
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CATEGORY FILTER
+══════════════════════════════════════════════ -->
+<section class="py-10">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="reveal flex flex-wrap gap-2 justify-center" id="pill-container">
+      <!-- pills injected by JS -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FAQ ACCORDION
+══════════════════════════════════════════════ -->
+<section class="pb-20">
+  <div class="max-w-4xl mx-auto px-4" id="faq-list">
+    <!-- cards injected by JS -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     DARK CTA
+══════════════════════════════════════════════ -->
+<section class="py-24 px-4">
+  <div class="max-w-3xl mx-auto text-center reveal">
+    <div class="rounded-3xl border border-accent/20 bg-gradient-to-br from-accent/10 via-[#1a0d40] to-[#0f0a1e] p-12 cta-glow">
+      <div class="text-5xl mb-5">🦀</div>
+      <h2 class="text-3xl sm:text-4xl font-black text-white mb-4" data-i18n="cta_title">
+        還有其他問題嗎？
+      </h2>
+      <p class="text-slate-400 mb-8 text-lg" data-i18n="cta_sub">
+        直接透過 Telegram 聯繫我們，通常 24 小時內回覆
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://t.me/your_support_handle" target="_blank"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-accent hover:bg-accent-600 text-white font-semibold transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span data-i18n="cta_btn_tg">透過 Telegram 聯繫</span>
+        </a>
+        <a href="./landing.html#pricing"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-accent/40 text-accent hover:bg-accent/10 font-semibold transition-colors">
+          <span data-i18n="cta_btn_plan">查看方案</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer class="border-t border-white/5 py-12 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🦀</span>
+          <span class="font-bold text-white text-lg">大閘蟹</span>
+        </div>
+        <p class="text-slate-500 text-sm max-w-xs" data-i18n="footer_tagline">
+          你的個人 AI 助理，住在 Telegram 裡
+        </p>
+      </div>
+
+      <!-- Nav links -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-3 text-sm text-slate-400">
+        <a href="./landing.html#scenarios" class="hover:text-accent transition-colors" data-i18n="nav_scenarios">使用情境</a>
+        <a href="./landing.html#features"  class="hover:text-accent transition-colors" data-i18n="nav_features">功能</a>
+        <a href="./landing.html#pricing"   class="hover:text-accent transition-colors" data-i18n="nav_pricing">方案</a>
+        <a href="./guide.html"             class="hover:text-accent transition-colors" data-i18n="nav_guide">步驟教學</a>
+        <a href="./install.html"           class="hover:text-accent transition-colors" data-i18n="nav_install">安裝教學</a>
+        <a href="./advanced.html"          class="hover:text-accent transition-colors" data-i18n="nav_advanced">進階功能</a>
+        <a href="./faq.html"               class="text-accent font-medium"            data-i18n="nav_faq">FAQ</a>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+      <span data-i18n="footer_copy">© 2025 大閘蟹. All rights reserved.</span>
+      <span data-i18n="footer_powered">Powered by OpenClaw &amp; Telegram</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+// ─── i18n translations ───────────────────────────────────────────────────────
+const translations = {
+  zh: {
+    nav_scenarios:    '使用情境',
+    nav_features:     '功能',
+    nav_pricing:      '方案',
+    nav_guide:        '步驟教學',
+    nav_install:      '安裝教學',
+    nav_advanced:     '進階功能',
+    nav_faq:          'FAQ',
+    nav_cta:          '查看方案',
+    lang_switch_label:'切換語言',
+    hero_title:       '常見問題',
+    hero_sub:         '找不到答案？直接聯繫我們',
+    cat_all:          '全部',
+    cat_basic:        '基本問題',
+    cat_features:     '功能說明',
+    cat_billing:      '計費',
+    cat_tech:         '技術問題',
+    cat_telegram:     'Telegram',
+    cta_title:        '還有其他問題嗎？',
+    cta_sub:          '直接透過 Telegram 聯繫我們，通常 24 小時內回覆',
+    cta_btn_tg:       '透過 Telegram 聯繫',
+    cta_btn_plan:     '查看方案',
+    footer_tagline:   '你的個人 AI 助理，住在 Telegram 裡',
+    footer_copy:      '© 2025 大閘蟹. All rights reserved.',
+    footer_powered:   'Powered by OpenClaw & Telegram',
+  },
+  en: {
+    nav_scenarios:    'Use Cases',
+    nav_features:     'Features',
+    nav_pricing:      'Pricing',
+    nav_guide:        'Guide',
+    nav_install:      'Install',
+    nav_advanced:     'Advanced',
+    nav_faq:          'FAQ',
+    nav_cta:          'View Plans',
+    lang_switch_label:'Switch Language',
+    hero_title:       'FAQ',
+    hero_sub:         "Can't find an answer? Contact us directly",
+    cat_all:          'All',
+    cat_basic:        'Basics',
+    cat_features:     'Features',
+    cat_billing:      'Billing',
+    cat_tech:         'Technical',
+    cat_telegram:     'Telegram',
+    cta_title:        'Still have questions?',
+    cta_sub:          'Reach us on Telegram — we usually reply within 24 hours',
+    cta_btn_tg:       'Contact via Telegram',
+    cta_btn_plan:     'View Plans',
+    footer_tagline:   'Your personal AI assistant, living in Telegram',
+    footer_copy:      '© 2025 大閘蟹. All rights reserved.',
+    footer_powered:   'Powered by OpenClaw & Telegram',
+  }
+};
+
+// ─── FAQ data ─────────────────────────────────────────────────────────────────
+const faqs = [
+  {
+    category: 'basic',
+    q: '大閘蟹是什麼？',
+    a: '大閘蟹是一個部署在雲端伺服器上的個人 AI 助理平台。我們幫你把 AI（如 GPT、Claude、Gemini 等）安裝在獨立主機上，並綁定你的 Telegram Bot，讓你可以隨時透過 Telegram 傳訊息給 AI，完成各種任務，24 小時不間斷。'
+  },
+  {
+    category: 'basic',
+    q: '我需要自己有伺服器嗎？',
+    a: '不需要。我們幫你開好、設定好，你只需要提供 AI API Key 和 Telegram Bot Token，其他都交給我們處理。'
+  },
+  {
+    category: 'basic',
+    q: '跟 ChatGPT 有什麼不同？',
+    a: 'ChatGPT 是你去找它；大閘蟹是它主動找你。大閘蟹 24 小時運行在你的專屬主機，可以排程、監控、主動推播，住在你的 Telegram 裡，不需要開電腦或登入任何網站。'
+  },
+  {
+    category: 'features',
+    q: '什麼是「技能（Skills）」？',
+    a: '技能是擴充 AI 功能的插件。大閘蟹預裝了 9 種技能，包含股票查詢、加密貨幣行情、新聞摘要、YouTube 摘要、即時搜尋、翻譯、天氣查詢、長文整理、AI 自建技能。你也可以讓 AI 幫你自動開發新技能。'
+  },
+  {
+    category: 'features',
+    q: '可以設定排程任務嗎？',
+    a: '可以。你可以告訴大閘蟹「每天早上 8 點幫我整理財經早報」或「每週一匯報上週美股表現」，它會定時自動執行並推播給你。'
+  },
+  {
+    category: 'features',
+    q: '大閘蟹記得我說過的事嗎？',
+    a: '是的。大閘蟹有永久記憶功能，你說過的偏好、設定、持倉資訊都會被記住，下次對話不需要重複說明。'
+  },
+  {
+    category: 'features',
+    q: '支援哪些 AI 模型？',
+    a: '支援市面上所有主流 AI：Google Gemini（有免費額度）、OpenAI GPT-4/4o、Anthropic Claude、DeepSeek（超高 CP 值）、Groq（極速）、xAI Grok 等。你可以隨時切換，用自己的 API Key，按用量付費。'
+  },
+  {
+    category: 'billing',
+    q: '費用怎麼計算？',
+    a: '月費是主機租用費（人民幣計價）。AI 使用費另計——你用自己申請的 API Key，費用直接向 AI 廠商（如 OpenAI、Google 等）支付，我們不收任何 AI 使用抽成。'
+  },
+  {
+    category: 'billing',
+    q: 'AI API 費用大概多少？',
+    a: '以 Google Gemini 為例，有相當充裕的免費額度，日常使用幾乎免費。OpenAI GPT-4o 約每百萬 Token $2.5 美元；DeepSeek 更便宜，約不到 OpenAI 的 1/10。實際費用視使用量而定。'
+  },
+  {
+    category: 'billing',
+    q: '可以隨時取消嗎？',
+    a: '可以。到期不續費，服務自動停止，不會自動扣款。'
+  },
+  {
+    category: 'tech',
+    q: '我的資料安全嗎？',
+    a: '非常安全。每個用戶都有獨立的雲端主機，資料不會與其他用戶共用。你的對話記錄只存在你的主機上，我們不會讀取你的對話內容。'
+  },
+  {
+    category: 'tech',
+    q: '大閘蟹回應速度怎麼樣？',
+    a: '回應速度主要取決於你選擇的 AI 模型。如果追求速度，可以選擇 Groq（極速推理），一般對話幾乎即時回應。'
+  },
+  {
+    category: 'tech',
+    q: '如果 AI 回應出錯怎麼辦？',
+    a: '可以直接在 Telegram 反映問題，我們會協助排查。常見問題如 API Key 額度不足、網路問題等，大閘蟹會主動告知錯誤原因。'
+  },
+  {
+    category: 'telegram',
+    q: '怎麼取得 Telegram Bot Token？',
+    a: '在 Telegram 搜尋 @BotFather，輸入 /newbot，按照指示命名你的 Bot，即可取得 Token（格式：1234567890:ABCdef...）。詳細步驟請參考步驟教學頁面。'
+  },
+  {
+    category: 'telegram',
+    q: '一個 Bot Token 可以給多人使用嗎？',
+    a: '不建議。每個 Bot Token 對應一個 Telegram Bot，建議每個帳號使用獨立的 Bot，確保對話記憶和資料隔離。如需多人共用，請考慮 Pro 以上方案。'
+  }
+];
+
+// ─── Category pill config ─────────────────────────────────────────────────────
+const categories = [
+  { key: 'all',      labelKey: 'cat_all' },
+  { key: 'basic',    labelKey: 'cat_basic' },
+  { key: 'features', labelKey: 'cat_features' },
+  { key: 'billing',  labelKey: 'cat_billing' },
+  { key: 'tech',     labelKey: 'cat_tech' },
+  { key: 'telegram', labelKey: 'cat_telegram' },
+];
+
+// ─── State ────────────────────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('lang') || 'zh';
+let currentCat  = 'all';
+let openIndex   = null;   // currently open FAQ index (-1 = none)
+
+// ─── Render pills ─────────────────────────────────────────────────────────────
+function renderPills() {
+  const container = document.getElementById('pill-container');
+  container.innerHTML = '';
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = `pill px-4 py-2 rounded-full text-sm font-medium border ${
+      cat.key === currentCat
+        ? 'active bg-accent text-white border-accent'
+        : 'border-white/10 text-slate-400 hover:border-accent/40 hover:text-slate-200'
+    }`;
+    btn.textContent = translations[currentLang][cat.labelKey];
+    btn.setAttribute('data-cat', cat.key);
+    btn.setAttribute('data-labelkey', cat.labelKey);
+    btn.onclick = () => filterFaq(cat.key);
+    container.appendChild(btn);
+  });
+}
+
+// ─── Render FAQ cards ─────────────────────────────────────────────────────────
+function renderFaqs() {
+  const list = document.getElementById('faq-list');
+  list.innerHTML = '';
+
+  faqs.forEach((faq, idx) => {
+    const card = document.createElement('div');
+    card.className = `faq-card reveal border border-white/5 rounded-2xl mb-3 bg-white/[0.03] overflow-hidden`;
+    card.setAttribute('data-category', faq.category);
+
+    // visibility
+    if (currentCat !== 'all' && faq.category !== currentCat) {
+      card.style.display = 'none';
+    }
+
+    card.innerHTML = `
+      <button
+        class="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+        onclick="toggleFaq(${idx})"
+        aria-expanded="false"
+        id="faq-btn-${idx}">
+        <span class="font-semibold text-white text-base leading-snug">${faq.q}</span>
+        <svg class="faq-chevron flex-shrink-0 w-5 h-5 text-accent" id="chevron-${idx}"
+          fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="faq-body" id="body-${idx}">
+        <div class="px-6 pb-6 text-slate-400 leading-relaxed text-sm border-t border-white/5 pt-4">
+          ${faq.a}
+        </div>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  // re-trigger reveal observer on new elements
+  observeReveal();
+}
+
+// ─── Toggle accordion ─────────────────────────────────────────────────────────
+function toggleFaq(idx) {
+  const body    = document.getElementById(`body-${idx}`);
+  const chevron = document.getElementById(`chevron-${idx}`);
+  const btn     = document.getElementById(`faq-btn-${idx}`);
+  const isOpen  = body.classList.contains('open');
+
+  // close currently open
+  if (openIndex !== null && openIndex !== idx) {
+    const prevBody    = document.getElementById(`body-${openIndex}`);
+    const prevChevron = document.getElementById(`chevron-${openIndex}`);
+    const prevBtn     = document.getElementById(`faq-btn-${openIndex}`);
+    if (prevBody)    { prevBody.classList.remove('open'); }
+    if (prevChevron) { prevChevron.classList.remove('open'); }
+    if (prevBtn)     { prevBtn.setAttribute('aria-expanded', 'false'); }
+  }
+
+  if (isOpen) {
+    body.classList.remove('open');
+    chevron.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    openIndex = null;
+  } else {
+    body.classList.add('open');
+    chevron.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    openIndex = idx;
+  }
+}
+
+// ─── Filter by category ───────────────────────────────────────────────────────
+function filterFaq(cat) {
+  // close open accordion
+  if (openIndex !== null) {
+    const prevBody    = document.getElementById(`body-${openIndex}`);
+    const prevChevron = document.getElementById(`chevron-${openIndex}`);
+    if (prevBody)    prevBody.classList.remove('open');
+    if (prevChevron) prevChevron.classList.remove('open');
+    openIndex = null;
+  }
+
+  currentCat = cat;
+  renderPills();
+
+  document.querySelectorAll('[data-category]').forEach(card => {
+    const matches = cat === 'all' || card.getAttribute('data-category') === cat;
+    card.style.display = matches ? '' : 'none';
+  });
+}
+
+// ─── Language switcher ────────────────────────────────────────────────────────
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+
+  // update all [data-i18n] elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) el.textContent = translations[lang][key];
+  });
+
+  // update lang button text
+  const btnDesktop = document.getElementById('lang-btn');
+  const btnMobile  = document.getElementById('lang-btn-mobile');
+  if (btnDesktop) btnDesktop.textContent = lang === 'zh' ? 'EN' : '中';
+  if (btnMobile)  btnMobile.textContent  = lang === 'zh' ? 'EN' : '中';
+
+  // re-render pills with new labels
+  renderPills();
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'zh' ? 'en' : 'zh');
+}
+
+// ─── Mobile menu ─────────────────────────────────────────────────────────────
+function toggleMenu() {
+  const menu   = document.getElementById('mobile-menu');
+  const iconM  = document.getElementById('icon-menu');
+  const iconX  = document.getElementById('icon-close');
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    iconM.classList.remove('hidden');
+    iconX.classList.add('hidden');
+  } else {
+    menu.classList.add('open');
+    iconM.classList.add('hidden');
+    iconX.classList.remove('hidden');
+  }
+}
+
+function closeMenu() {
+  const menu  = document.getElementById('mobile-menu');
+  const iconM = document.getElementById('icon-menu');
+  const iconX = document.getElementById('icon-close');
+  menu.classList.remove('open');
+  iconM.classList.remove('hidden');
+  iconX.classList.add('hidden');
+}
+
+// ─── Scroll reveal ────────────────────────────────────────────────────────────
+function observeReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    // reset in case it was previously visible (re-render)
+    if (!el.classList.contains('visible')) {
+      observer.observe(el);
+    }
+  });
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderPills();
+  renderFaqs();
+  applyLang(currentLang);
+  observeReveal();
+});
+</script>
+</body>
+</html>

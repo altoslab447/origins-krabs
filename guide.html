@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>步驟教學 — 大閘蟹 AI 助理</title>
+  <meta name="description" content="三步驟開始使用大閘蟹 AI — 取得 API Key、設定 Telegram Bot、提交讓我們部署" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --accent:       #6d28d9;
+      --accent-light: #7c3aed;
+      --accent-dark:  #5b21b6;
+      --accent-50:    #f5f3ff;
+      --accent-100:   #ede9fe;
+      --accent-200:   #ddd6fe;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --text-muted:   #9ca3af;
+      --bg-white:     #ffffff;
+      --bg-gray:      #f9fafb;
+      --border:       #e5e7eb;
+      --radius:       0.75rem;
+      --radius-sm:    0.5rem;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md:    0 4px 16px rgba(0,0,0,.08);
+      --shadow-lg:    0 10px 40px rgba(0,0,0,.12);
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans HK', sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Reveal Animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── Card Hover ── */
+    .card-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ── Container ── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ══════════════════════════════
+       HEADER / NAV
+    ══════════════════════════════ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-logo .logo-emoji { font-size: 1.35rem; }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 700; }
+
+    /* Right side controls */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      font-family: 'Noto Sans HK', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Mobile CTA button */
+    .mobile-cta-btn {
+      display: inline-flex;
+      font-family: 'Noto Sans HK', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 0.9rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .mobile-cta-btn:hover { background: var(--accent-light); }
+    @media (min-width: 768px) {
+      .mobile-cta-btn { display: none; }
+    }
+
+    /* Hamburger */
+    .hamburger-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+    @media (min-width: 768px) {
+      .hamburger-btn { display: none; }
+    }
+
+    /* Mobile Drawer */
+    .mobile-menu {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+      border-bottom: 1px solid transparent;
+      background: #fff;
+    }
+    .mobile-menu.open {
+      max-height: 480px;
+      border-bottom-color: var(--border);
+    }
+    .mobile-menu-inner {
+      padding: 0.75rem 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+    .mobile-menu-inner a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--bg-gray);
+      transition: color 0.2s;
+    }
+    .mobile-menu-inner a:last-child { border-bottom: none; }
+    .mobile-menu-inner a:hover { color: var(--accent); }
+    .mobile-menu-inner a.active { color: var(--accent); font-weight: 700; }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 40%, #ddd6fe 100%);
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(109,40,217,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(109,40,217,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.4rem;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* Overview cards */
+    .overview-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 640px) {
+      .overview-cards { grid-template-columns: 1fr; max-width: 340px; }
+    }
+    .overview-card {
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid rgba(109,40,217,0.2);
+      border-radius: var(--radius);
+      padding: 1.4rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      backdrop-filter: blur(6px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: default;
+    }
+    .overview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(109,40,217,0.15);
+      border-color: var(--accent);
+    }
+    .overview-card .ov-emoji { font-size: 2rem; }
+    .overview-card .ov-step {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .overview-card .ov-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════
+       STEP SECTIONS
+    ══════════════════════════════ */
+    .step-section {
+      padding: 5rem 0;
+    }
+    .step-section:nth-child(even) {
+      background: var(--bg-gray);
+    }
+
+    .step-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .step-number-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-100);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .step-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .step-header p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Provider cards grid */
+    .provider-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) {
+      .provider-grid { grid-template-columns: 1fr; }
+    }
+
+    .provider-card {
+      background: var(--bg-white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .provider-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-200);
+    }
+    .provider-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .provider-emoji { font-size: 1.75rem; line-height: 1; }
+    .provider-meta { flex: 1; }
+    .provider-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+    .provider-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: var(--accent-100);
+      color: var(--accent);
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      margin-top: 0.25rem;
+    }
+    .provider-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .provider-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+    .ps-num {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .ps-text {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .ps-text a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .ps-text a:hover { color: var(--accent-dark); }
+    code {
+      font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+      font-size: 0.8em;
+      background: #f3f4f6;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      color: var(--accent-dark);
+    }
+
+    /* ══════════════════════════════
+       STEP 2 — Telegram
+    ══════════════════════════════ */
+    .tg-steps-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .tg-steps-wrapper { grid-template-columns: 1fr; }
+    }
+
+    .tg-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .tg-step-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .tg-step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tg-step-content {
+      flex: 1;
+      padding-top: 4px;
+    }
+    .tg-step-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .tg-step-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Important notes box */
+    .notes-box {
+      background: #fffbeb;
+      border: 1.5px solid #fbbf24;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .notes-box-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #92400e;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .notes-box ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .notes-box li {
+      font-size: 0.875rem;
+      color: #78350f;
+      line-height: 1.5;
+      padding-left: 0.5rem;
+      border-left: 3px solid #fbbf24;
+    }
+
+    /* ══════════════════════════════
+       STEP 3 — Submit
+    ══════════════════════════════ */
+    .submit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 760px) {
+      .submit-grid { grid-template-columns: 1fr; }
+    }
+
+    .checklist-card {
+      background: var(--bg-white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .checklist-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .checklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .check-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #d1fae5;
+      color: #059669;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      font-weight: 700;
+    }
+    .we-do-card {
+      background: linear-gradient(135deg, var(--accent-50) 0%, var(--accent-100) 100%);
+      border: 1.5px solid var(--accent-200);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    .we-do-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin-bottom: 1.2rem;
+    }
+    .we-do-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .we-do-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--accent-dark);
+      line-height: 1.5;
+    }
+    .we-do-item span:first-child { flex-shrink: 0; font-size: 1rem; }
+
+    /* ══════════════════════════════
+       CTA SECTION
+    ══════════════════════════════ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 50%, var(--accent-light) 100%);
+      padding: 5rem 0;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .cta-section p {
+      font-size: 1.05rem;
+      opacity: 0.88;
+      margin-bottom: 2.25rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cta-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Noto Sans HK', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      background: #fff;
+      color: var(--accent);
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .cta-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .cta-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Noto Sans HK', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.85rem 1.75rem;
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .cta-btn-secondary:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .site-footer {
+      background: #111827;
+      color: #d1d5db;
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+    @media (max-width: 420px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-col h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-col .footer-brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .footer-col .footer-tagline {
+      font-size: 0.82rem;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    .footer-bottom {
+      border-top: 1px solid #1f2937;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    /* ══════════════════════════════
+       Utility
+    ══════════════════════════════ */
+    .text-accent { color: var(--accent); }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-inner">
+        <!-- Logo -->
+        <a href="./landing.html" class="nav-logo">
+          <span class="logo-emoji">🦀</span>
+          <span data-i18n="brand">大閘蟹</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <ul class="nav-links" role="list">
+          <li><a href="./landing.html#scenarios" data-i18n="nav_scenarios">使用情境</a></li>
+          <li><a href="./landing.html#features"  data-i18n="nav_features">功能</a></li>
+          <li><a href="./landing.html#pricing"   data-i18n="nav_pricing">方案</a></li>
+          <li><a href="./guide.html"              data-i18n="nav_guide" class="active">步驟教學</a></li>
+          <li><a href="./install.html"            data-i18n="nav_install">安裝教學</a></li>
+          <li><a href="./advanced.html"           data-i18n="nav_advanced">進階功能</a></li>
+          <li><a href="./faq.html"                data-i18n="nav_faq">FAQ</a></li>
+        </ul>
+
+        <!-- Right Controls -->
+        <div class="nav-controls">
+          <button class="lang-btn" id="lang-btn" aria-label="切換語言">EN</button>
+          <a href="https://t.me/dazhaxi" class="mobile-cta-btn" data-i18n="mobile_cta">立即開始</a>
+          <button class="hamburger-btn" id="guide-menu-btn" aria-label="開啟選單" aria-expanded="false">
+            <svg id="guide-icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="guide-icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:none;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-menu" id="guide-mobile-menu" role="navigation" aria-label="Mobile navigation">
+      <div class="mobile-menu-inner">
+        <a href="./landing.html#scenarios" data-i18n="nav_scenarios">使用情境</a>
+        <a href="./landing.html#features"  data-i18n="nav_features">功能</a>
+        <a href="./landing.html#pricing"   data-i18n="nav_pricing">方案</a>
+        <a href="./guide.html"             data-i18n="nav_guide" class="active">步驟教學</a>
+        <a href="./install.html"           data-i18n="nav_install">安裝教學</a>
+        <a href="./advanced.html"          data-i18n="nav_advanced">進階功能</a>
+        <a href="./faq.html"              data-i18n="nav_faq">FAQ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge reveal" data-i18n="hero_badge">STEP BY STEP</div>
+      <h1 class="reveal reveal-delay-1">
+        <span data-i18n="hero_h1_pre">三步驟開始使用</span><span class="text-accent">大閘蟹</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2" data-i18n="hero_sub">
+        準備好以下資料，我們幫你完成其餘所有設定
+      </p>
+
+      <!-- Overview Cards -->
+      <div class="overview-cards">
+        <div class="overview-card reveal reveal-delay-1" id="overview-1">
+          <div class="ov-emoji">🔑</div>
+          <div class="ov-step" data-i18n="ov_step1_label">STEP 1</div>
+          <div class="ov-title" data-i18n="ov_step1_title">取得 AI API Key</div>
+        </div>
+        <div class="overview-card reveal reveal-delay-2" id="overview-2">
+          <div class="ov-emoji">✈️</div>
+          <div class="ov-step" data-i18n="ov_step2_label">STEP 2</div>
+          <div class="ov-title" data-i18n="ov_step2_title">設定 Telegram Bot</div>
+        </div>
+        <div class="overview-card reveal reveal-delay-3" id="overview-3">
+          <div class="ov-emoji">🚀</div>
+          <div class="ov-step" data-i18n="ov_step3_label">STEP 3</div>
+          <div class="ov-title" data-i18n="ov_step3_title">提交，我們部署</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STEP 1: API KEY ══ -->
+  <section class="step-section" id="step-api">
+    <div class="container">
+      <div class="step-header reveal">
+        <div class="step-number-badge">
+          <span>🔑</span> <span data-i18n="step1_badge">STEP 1</span>
+        </div>
+        <h2 data-i18n="step1_h2">取得 AI API Key</h2>
+        <p data-i18n="step1_sub">大閘蟹支援多種 AI 模型，你需要一個 API Key 才能啟動。建議新手從 Gemini 開始（有免費額度）。</p>
+      </div>
+
+      <div class="provider-grid">
+
+        <!-- Gemini -->
+        <div class="provider-card card-hover reveal reveal-delay-1">
+          <div class="provider-header">
+            <div class="provider-emoji">🌀</div>
+            <div class="provider-meta">
+              <div class="provider-name" data-i18n="p_gemini_name">Google Gemini</div>
+              <span class="provider-tag" data-i18n="p_gemini_tag">推薦新手・有免費額度</span>
+            </div>
+          </div>
+          <div class="provider-steps">
+            <div class="provider-step-item">
+              <div class="ps-num">1</div>
+              <div class="ps-text">
+                <span data-i18n="p_gemini_s1a">前往 </span><a href="https://aistudio.google.com" target="_blank" rel="noopener">aistudio.google.com</a>
+              </div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">2</div>
+              <div class="ps-text" data-i18n="p_gemini_s2">登入 Google 帳號</div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">3</div>
+              <div class="ps-text" data-i18n="p_gemini_s3">點「Get API Key」→「Create API Key」</div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">4</div>
+              <div class="ps-text">
+                <span data-i18n="p_gemini_s4a">複製 Key（格式：</span><code>AIza...</code><span data-i18n="p_gemini_s4b">）</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DeepSeek -->
+        <div class="provider-card card-hover reveal reveal-delay-2">
+          <div class="provider-header">
+            <div class="provider-emoji">🐬</div>
+            <div class="provider-meta">
+              <div class="provider-name" data-i18n="p_ds_name">DeepSeek</div>
+              <span class="provider-tag" data-i18n="p_ds_tag">超高 CP 值・費用不到 OpenAI 的 1/10</span>
+            </div>
+          </div>
+          <div class="provider-steps">
+            <div class="provider-step-item">
+              <div class="ps-num">1</div>
+              <div class="ps-text">
+                <span data-i18n="p_ds_s1a">前往 </span><a href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener">platform.deepseek.com/api_keys</a>
+              </div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">2</div>
+              <div class="ps-text" data-i18n="p_ds_s2">點「Create API Key」</div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">3</div>
+              <div class="ps-text">
+                <span data-i18n="p_ds_s3a">複製 Key（格式：</span><code>sk-...</code><span data-i18n="p_ds_s3b">）</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OpenAI -->
+        <div class="provider-card card-hover reveal reveal-delay-3">
+          <div class="provider-header">
+            <div class="provider-emoji">⚡</div>
+            <div class="provider-meta">
+              <div class="provider-name" data-i18n="p_oai_name">OpenAI GPT</div>
+              <span class="provider-tag" data-i18n="p_oai_tag">需先儲值才能使用</span>
+            </div>
+          </div>
+          <div class="provider-steps">
+            <div class="provider-step-item">
+              <div class="ps-num">1</div>
+              <div class="ps-text">
+                <span data-i18n="p_oai_s1a">前往 </span><a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a>
+              </div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">2</div>
+              <div class="ps-text" data-i18n="p_oai_s2">點「Create new secret key」</div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">3</div>
+              <div class="ps-text">
+                <span data-i18n="p_oai_s3a">複製 Key（格式：</span><code>sk-...</code><span data-i18n="p_oai_s3b">）—— 需先儲值</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anthropic -->
+        <div class="provider-card card-hover reveal reveal-delay-4">
+          <div class="provider-header">
+            <div class="provider-emoji">🧠</div>
+            <div class="provider-meta">
+              <div class="provider-name" data-i18n="p_ant_name">Anthropic Claude</div>
+              <span class="provider-tag" data-i18n="p_ant_tag">業界最強推理能力</span>
+            </div>
+          </div>
+          <div class="provider-steps">
+            <div class="provider-step-item">
+              <div class="ps-num">1</div>
+              <div class="ps-text">
+                <span data-i18n="p_ant_s1a">前往 </span><a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com/settings/keys</a>
+              </div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">2</div>
+              <div class="ps-text" data-i18n="p_ant_s2">點「Create Key」</div>
+            </div>
+            <div class="provider-step-item">
+              <div class="ps-num">3</div>
+              <div class="ps-text">
+                <span data-i18n="p_ant_s3a">複製 Key（格式：</span><code>sk-ant-...</code><span data-i18n="p_ant_s3b">）</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /provider-grid -->
+    </div>
+  </section>
+
+  <!-- ══ STEP 2: TELEGRAM ══ -->
+  <section class="step-section" id="step-tg">
+    <div class="container">
+      <div class="step-header reveal">
+        <div class="step-number-badge">
+          <span>✈️</span> <span data-i18n="step2_badge">STEP 2</span>
+        </div>
+        <h2 data-i18n="step2_h2">Telegram Bot 設定</h2>
+        <p data-i18n="step2_sub">你需要一個屬於自己的 Telegram Bot，大閘蟹才能在 Telegram 裡跟你對話。</p>
+      </div>
+
+      <div class="tg-steps-wrapper">
+        <!-- Steps list -->
+        <div class="tg-steps-list reveal">
+          <div class="tg-step-item">
+            <div class="tg-step-num">1</div>
+            <div class="tg-step-content">
+              <p>
+                <span data-i18n="tg_s1a">在 Telegram 搜尋 </span><strong>@BotFather</strong><span data-i18n="tg_s1b">（官方認證藍勾）</span>
+              </p>
+            </div>
+          </div>
+          <div class="tg-step-item">
+            <div class="tg-step-num">2</div>
+            <div class="tg-step-content">
+              <p>
+                <span data-i18n="tg_s2a">輸入指令 </span><code>/newbot</code>
+              </p>
+            </div>
+          </div>
+          <div class="tg-step-item">
+            <div class="tg-step-num">3</div>
+            <div class="tg-step-content">
+              <p data-i18n="tg_s3">依提示為 Bot 取名（例如：My DaZhaxie Bot）</p>
+            </div>
+          </div>
+          <div class="tg-step-item">
+            <div class="tg-step-num">4</div>
+            <div class="tg-step-content">
+              <p>
+                <span data-i18n="tg_s4a">再取一個 username（必須以 </span><code>bot</code><span data-i18n="tg_s4b"> 結尾，例如：</span><code>my_dazhaxi_bot</code><span>）</span>
+              </p>
+            </div>
+          </div>
+          <div class="tg-step-item">
+            <div class="tg-step-num">5</div>
+            <div class="tg-step-content">
+              <p>
+                <span data-i18n="tg_s5a">BotFather 會給你一串 Token（格式：</span><code>1234567890:ABCdefGHIjklMNO...</code><span>）</span>
+              </p>
+            </div>
+          </div>
+          <div class="tg-step-item">
+            <div class="tg-step-num">6</div>
+            <div class="tg-step-content">
+              <p data-i18n="tg_s6">複製並保存這個 Token</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes box -->
+        <div class="notes-box reveal reveal-delay-2">
+          <div class="notes-box-title">⚠️ <span data-i18n="notes_title">重要提醒</span></div>
+          <ul>
+            <li data-i18n="notes_1">Token 是你的 Bot 密鑰，請勿分享給他人</li>
+            <li data-i18n="notes_2">一個 Token 對應一個 Bot，建議每人獨立一個</li>
+            <li data-i18n="notes_3">Token 不小心洩露？到 BotFather 輸入 <code>/revoke</code> 重新生成</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STEP 3: SUBMIT ══ -->
+  <section class="step-section" id="step-submit">
+    <div class="container">
+      <div class="step-header reveal">
+        <div class="step-number-badge">
+          <span>🚀</span> <span data-i18n="step3_badge">STEP 3</span>
+        </div>
+        <h2 data-i18n="step3_h2">你提交，我們搞定其餘所有事</h2>
+        <p data-i18n="step3_sub">只需要提供基本資料，其餘所有技術設定由我們完成</p>
+      </div>
+
+      <div class="submit-grid">
+        <!-- What you provide -->
+        <div class="checklist-card card-hover reveal reveal-delay-1">
+          <h3>📋 <span data-i18n="checklist_title">你提供的資料</span></h3>
+          <div class="checklist-items">
+            <div class="checklist-item">
+              <div class="check-icon">✓</div>
+              <span data-i18n="checklist_1">AI API Key（至少一種）</span>
+            </div>
+            <div class="checklist-item">
+              <div class="check-icon">✓</div>
+              <span data-i18n="checklist_2">Telegram Bot Token</span>
+            </div>
+            <div class="checklist-item">
+              <div class="check-icon">✓</div>
+              <span data-i18n="checklist_3">選擇方案（Starter / Standard / Pro）</span>
+            </div>
+            <div class="checklist-item">
+              <div class="check-icon">✓</div>
+              <span data-i18n="checklist_4">任何特殊需求（選填）</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- What we do -->
+        <div class="we-do-card card-hover reveal reveal-delay-2">
+          <h3 data-i18n="wedo_title">🛠️ 我們幫你做的事</h3>
+          <div class="we-do-items">
+            <div class="we-do-item">
+              <span>🔧</span>
+              <span data-i18n="wedo_1">開好雲端主機</span>
+            </div>
+            <div class="we-do-item">
+              <span>⚙️</span>
+              <span data-i18n="wedo_2">安裝並設定大閘蟹</span>
+            </div>
+            <div class="we-do-item">
+              <span>🛠️</span>
+              <span data-i18n="wedo_3">預裝 9 種技能</span>
+            </div>
+            <div class="we-do-item">
+              <span>🔗</span>
+              <span data-i18n="wedo_4">綁定你的 Telegram Bot</span>
+            </div>
+            <div class="we-do-item">
+              <span>✅</span>
+              <span data-i18n="wedo_5">測試確認正常運行</span>
+            </div>
+            <div class="we-do-item">
+              <span>📲</span>
+              <span data-i18n="wedo_6">通知你開始使用</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="reveal" data-i18n="cta_h2">準備好了嗎？</h2>
+      <p class="reveal reveal-delay-1" data-i18n="cta_sub">把資料準備好，聯繫我們開始部署</p>
+      <div class="cta-buttons reveal reveal-delay-2">
+        <a href="https://t.me/dazhaxi" class="cta-btn-primary" target="_blank" rel="noopener">
+          <span data-i18n="cta_btn1">💬 聯繫我們開始</span>
+        </a>
+        <a href="./landing.html#pricing" class="cta-btn-secondary">
+          <span data-i18n="cta_btn2">查看方案</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div class="footer-col">
+          <div class="footer-brand">🦀 大閘蟹</div>
+          <p class="footer-tagline" data-i18n="footer_tagline">你的專屬 AI 助理，<br>一鍵部署，立即對話。</p>
+        </div>
+        <!-- 產品 -->
+        <div class="footer-col">
+          <h4 data-i18n="footer_col1_title">產品</h4>
+          <ul>
+            <li><a href="./landing.html#features" data-i18n="footer_features">功能介紹</a></li>
+            <li><a href="./landing.html#pricing"  data-i18n="footer_pricing">方案比較</a></li>
+            <li><a href="./guide.html"             data-i18n="footer_guide">步驟教學</a></li>
+            <li><a href="./install.html"           data-i18n="footer_install">安裝教學</a></li>
+            <li><a href="./advanced.html"          data-i18n="footer_advanced">進階功能</a></li>
+          </ul>
+        </div>
+        <!-- 幫助 -->
+        <div class="footer-col">
+          <h4 data-i18n="footer_col2_title">幫助</h4>
+          <ul>
+            <li><a href="./faq.html"              data-i18n="footer_faq">FAQ</a></li>
+            <li><a href="./guide.html#step-api"   data-i18n="footer_api_guide">API Key 教學</a></li>
+            <li><a href="./guide.html#step-tg"    data-i18n="footer_tg_guide">Telegram Bot 設定</a></li>
+          </ul>
+        </div>
+        <!-- 聯繫 & 技術 -->
+        <div class="footer-col">
+          <h4 data-i18n="footer_col3_title">聯繫</h4>
+          <ul>
+            <li><a href="https://t.me/dazhaxi" target="_blank" rel="noopener">Telegram @dazhaxi</a></li>
+          </ul>
+          <br/>
+          <h4 data-i18n="footer_col4_title">技術</h4>
+          <ul>
+            <li><span data-i18n="footer_tech1">Telegram Bot</span></li>
+            <li><span data-i18n="footer_tech2">Cloud Hosting</span></li>
+            <li><span data-i18n="footer_tech3">OpenClaw</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_copy">© 2026 大閘蟹. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ JAVASCRIPT ══ -->
+  <script>
+    // ── i18n translations ──
+    const translations = {
+      zh: {
+        brand:            '大閘蟹',
+        nav_scenarios:    '使用情境',
+        nav_features:     '功能',
+        nav_pricing:      '方案',
+        nav_guide:        '步驟教學',
+        nav_install:      '安裝教學',
+        nav_advanced:     '進階功能',
+        nav_faq:          'FAQ',
+        mobile_cta:       '立即開始',
+
+        hero_badge:       'STEP BY STEP',
+        hero_h1_pre:      '三步驟開始使用',
+        hero_sub:         '準備好以下資料，我們幫你完成其餘所有設定',
+
+        ov_step1_label:   'STEP 1',
+        ov_step1_title:   '取得 AI API Key',
+        ov_step2_label:   'STEP 2',
+        ov_step2_title:   '設定 Telegram Bot',
+        ov_step3_label:   'STEP 3',
+        ov_step3_title:   '提交，我們部署',
+
+        step1_badge:      'STEP 1',
+        step1_h2:         '取得 AI API Key',
+        step1_sub:        '大閘蟹支援多種 AI 模型，你需要一個 API Key 才能啟動。建議新手從 Gemini 開始（有免費額度）。',
+
+        p_gemini_name:    'Google Gemini',
+        p_gemini_tag:     '推薦新手・有免費額度',
+        p_gemini_s1a:     '前往 ',
+        p_gemini_s2:      '登入 Google 帳號',
+        p_gemini_s3:      '點「Get API Key」→「Create API Key」',
+        p_gemini_s4a:     '複製 Key（格式：',
+        p_gemini_s4b:     '）',
+
+        p_ds_name:        'DeepSeek',
+        p_ds_tag:         '超高 CP 值・費用不到 OpenAI 的 1/10',
+        p_ds_s1a:         '前往 ',
+        p_ds_s2:          '點「Create API Key」',
+        p_ds_s3a:         '複製 Key（格式：',
+        p_ds_s3b:         '）',
+
+        p_oai_name:       'OpenAI GPT',
+        p_oai_tag:        '需先儲值才能使用',
+        p_oai_s1a:        '前往 ',
+        p_oai_s2:         '點「Create new secret key」',
+        p_oai_s3a:        '複製 Key（格式：',
+        p_oai_s3b:        '）—— 需先儲值',
+
+        p_ant_name:       'Anthropic Claude',
+        p_ant_tag:        '業界最強推理能力',
+        p_ant_s1a:        '前往 ',
+        p_ant_s2:         '點「Create Key」',
+        p_ant_s3a:        '複製 Key（格式：',
+        p_ant_s3b:        '）',
+
+        step2_badge:      'STEP 2',
+        step2_h2:         'Telegram Bot 設定',
+        step2_sub:        '你需要一個屬於自己的 Telegram Bot，大閘蟹才能在 Telegram 裡跟你對話。',
+
+        tg_s1a:           '在 Telegram 搜尋 ',
+        tg_s1b:           '（官方認證藍勾）',
+        tg_s2a:           '輸入指令 ',
+        tg_s3:            '依提示為 Bot 取名（例如：My DaZhaxie Bot）',
+        tg_s4a:           '再取一個 username（必須以 ',
+        tg_s4b:           ' 結尾，例如：',
+        tg_s5a:           'BotFather 會給你一串 Token（格式：',
+        tg_s6:            '複製並保存這個 Token',
+
+        notes_title:      '重要提醒',
+        notes_1:          'Token 是你的 Bot 密鑰，請勿分享給他人',
+        notes_2:          '一個 Token 對應一個 Bot，建議每人獨立一個',
+        notes_3:          'Token 不小心洩露？到 BotFather 輸入 /revoke 重新生成',
+
+        step3_badge:      'STEP 3',
+        step3_h2:         '你提交，我們搞定其餘所有事',
+        step3_sub:        '只需要提供基本資料，其餘所有技術設定由我們完成',
+
+        checklist_title:  '你提供的資料',
+        checklist_1:      'AI API Key（至少一種）',
+        checklist_2:      'Telegram Bot Token',
+        checklist_3:      '選擇方案（Starter / Standard / Pro）',
+        checklist_4:      '任何特殊需求（選填）',
+
+        wedo_title:       '🛠️ 我們幫你做的事',
+        wedo_1:           '開好雲端主機',
+        wedo_2:           '安裝並設定大閘蟹',
+        wedo_3:           '預裝 9 種技能',
+        wedo_4:           '綁定你的 Telegram Bot',
+        wedo_5:           '測試確認正常運行',
+        wedo_6:           '通知你開始使用',
+
+        cta_h2:           '準備好了嗎？',
+        cta_sub:          '把資料準備好，聯繫我們開始部署',
+        cta_btn1:         '💬 聯繫我們開始',
+        cta_btn2:         '查看方案',
+
+        footer_tagline:   '你的專屬 AI 助理，一鍵部署，立即對話。',
+        footer_col1_title:'產品',
+        footer_features:  '功能介紹',
+        footer_pricing:   '方案比較',
+        footer_guide:     '步驟教學',
+        footer_install:   '安裝教學',
+        footer_advanced:  '進階功能',
+        footer_col2_title:'幫助',
+        footer_faq:       'FAQ',
+        footer_api_guide: 'API Key 教學',
+        footer_tg_guide:  'Telegram Bot 設定',
+        footer_col3_title:'聯繫',
+        footer_col4_title:'技術',
+        footer_tech1:     'Telegram Bot',
+        footer_tech2:     'Cloud Hosting',
+        footer_tech3:     'OpenClaw',
+        footer_copy:      '© 2026 大閘蟹. All rights reserved.',
+      },
+      en: {
+        brand:            'DaZhaxie',
+        nav_scenarios:    'Use Cases',
+        nav_features:     'Features',
+        nav_pricing:      'Pricing',
+        nav_guide:        'Get Started',
+        nav_install:      'Install',
+        nav_advanced:     'Advanced',
+        nav_faq:          'FAQ',
+        mobile_cta:       'Start Now',
+
+        hero_badge:       'STEP BY STEP',
+        hero_h1_pre:      '3 Steps to Start Using ',
+        hero_sub:         'Prepare the info below and we handle all the rest',
+
+        ov_step1_label:   'STEP 1',
+        ov_step1_title:   'Get an AI API Key',
+        ov_step2_label:   'STEP 2',
+        ov_step2_title:   'Set Up Telegram Bot',
+        ov_step3_label:   'STEP 3',
+        ov_step3_title:   'Submit & We Deploy',
+
+        step1_badge:      'STEP 1',
+        step1_h2:         'Get an AI API Key',
+        step1_sub:        'DaZhaxie supports multiple AI models. You need one API Key to get started. We recommend Gemini for beginners — it has a free tier.',
+
+        p_gemini_name:    'Google Gemini',
+        p_gemini_tag:     'Recommended for beginners · Free tier available',
+        p_gemini_s1a:     'Go to ',
+        p_gemini_s2:      'Sign in with your Google account',
+        p_gemini_s3:      'Click "Get API Key" → "Create API Key"',
+        p_gemini_s4a:     'Copy the Key (format: ',
+        p_gemini_s4b:     ')',
+
+        p_ds_name:        'DeepSeek',
+        p_ds_tag:         'Best value · 10x cheaper than OpenAI',
+        p_ds_s1a:         'Go to ',
+        p_ds_s2:          'Click "Create API Key"',
+        p_ds_s3a:         'Copy the Key (format: ',
+        p_ds_s3b:         ')',
+
+        p_oai_name:       'OpenAI GPT',
+        p_oai_tag:        'Requires pre-loaded credits',
+        p_oai_s1a:        'Go to ',
+        p_oai_s2:         'Click "Create new secret key"',
+        p_oai_s3a:        'Copy the Key (format: ',
+        p_oai_s3b:        ') — billing required',
+
+        p_ant_name:       'Anthropic Claude',
+        p_ant_tag:        'Industry-leading reasoning',
+        p_ant_s1a:        'Go to ',
+        p_ant_s2:         'Click "Create Key"',
+        p_ant_s3a:        'Copy the Key (format: ',
+        p_ant_s3b:        ')',
+
+        step2_badge:      'STEP 2',
+        step2_h2:         'Telegram Bot Setup',
+        step2_sub:        'You need your own Telegram Bot so DaZhaxie can chat with you inside Telegram.',
+
+        tg_s1a:           'Search for ',
+        tg_s1b:           ' on Telegram (official blue checkmark)',
+        tg_s2a:           'Send the command ',
+        tg_s3:            'Follow the prompts to name your bot (e.g. My DaZhaxie Bot)',
+        tg_s4a:           'Pick a username (must end with ',
+        tg_s4b:           ', e.g. ',
+        tg_s5a:           'BotFather will send you a Token (format: ',
+        tg_s6:            'Copy and save this Token',
+
+        notes_title:      'Important Notes',
+        notes_1:          'Your Token is your Bot\'s secret key — never share it',
+        notes_2:          'One Token = one Bot. Each person should have their own',
+        notes_3:          'Token leaked? Send /revoke to BotFather to regenerate it',
+
+        step3_badge:      'STEP 3',
+        step3_h2:         'You Submit, We Handle Everything Else',
+        step3_sub:        'Just provide the basics and we take care of all the technical setup',
+
+        checklist_title:  'What You Provide',
+        checklist_1:      'AI API Key (at least one)',
+        checklist_2:      'Telegram Bot Token',
+        checklist_3:      'Choose a plan (Starter / Standard / Pro)',
+        checklist_4:      'Any special requirements (optional)',
+
+        wedo_title:       '🛠️ What We Do For You',
+        wedo_1:           'Spin up your cloud server',
+        wedo_2:           'Install and configure DaZhaxie',
+        wedo_3:           'Pre-install 9 skills',
+        wedo_4:           'Connect your Telegram Bot',
+        wedo_5:           'Test and verify everything works',
+        wedo_6:           'Notify you when it\'s ready',
+
+        cta_h2:           'Ready to Start?',
+        cta_sub:          'Get your info ready and contact us to begin deployment',
+        cta_btn1:         '💬 Contact Us to Start',
+        cta_btn2:         'View Plans',
+
+        footer_tagline:   'Your personal AI assistant,\ndeployed in minutes.',
+        footer_col1_title:'Product',
+        footer_features:  'Features',
+        footer_pricing:   'Pricing',
+        footer_guide:     'Get Started',
+        footer_install:   'Install Guide',
+        footer_advanced:  'Advanced',
+        footer_col2_title:'Help',
+        footer_faq:       'FAQ',
+        footer_api_guide: 'API Key Guide',
+        footer_tg_guide:  'Telegram Bot Setup',
+        footer_col3_title:'Contact',
+        footer_col4_title:'Tech',
+        footer_tech1:     'Telegram Bot',
+        footer_tech2:     'Cloud Hosting',
+        footer_tech3:     'OpenClaw',
+        footer_copy:      '© 2026 DaZhaxie. All rights reserved.',
+      }
+    };
+
+    // ── Language state ──
+    let currentLang = localStorage.getItem('dzx-lang') || 'zh';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('dzx-lang', lang);
+      const t = translations[lang];
+
+      // Apply all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+      });
+
+      // Update lang button label
+      document.getElementById('lang-btn').textContent = lang === 'zh' ? 'EN' : '中';
+
+      // Update html lang attribute
+      document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+    }
+
+    // Lang button toggle
+    document.getElementById('lang-btn').addEventListener('click', () => {
+      applyLang(currentLang === 'zh' ? 'en' : 'zh');
+    });
+
+    // ── Mobile hamburger ──
+    const menuBtn   = document.getElementById('guide-menu-btn');
+    const mobileMenu = document.getElementById('guide-mobile-menu');
+    const iconOpen  = document.getElementById('guide-icon-open');
+    const iconClose = document.getElementById('guide-icon-close');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+      iconOpen.style.display  = isOpen ? 'none'  : 'block';
+      iconClose.style.display = isOpen ? 'block' : 'none';
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        iconOpen.style.display  = 'block';
+        iconClose.style.display = 'none';
+      });
+    });
+
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Init ──
+    document.addEventListener('DOMContentLoaded', () => {
+      applyLang(currentLang);
+    });
+
+    // Apply immediately in case DOMContentLoaded already fired
+    if (document.readyState !== 'loading') {
+      applyLang(currentLang);
+    }
+  </script>
+
+</body>
+</html>
