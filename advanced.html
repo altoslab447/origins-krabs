@@ -228,14 +228,6 @@
     .nav-link:hover { color: #6d28d9; border-bottom-color: #a78bfa; }
     .nav-link.active { color: #6d28d9; border-bottom-color: #6d28d9; font-weight: 700; }
 
-    /* Mobile drawer */
-    #adv-mobile-menu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .4s ease;
-    }
-    #adv-mobile-menu.open { max-height: 600px; }
-
     /* Quick link cards */
     .quick-card {
       background: rgba(255,255,255,0.12);
@@ -276,77 +268,78 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    .gradient-bg {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    }
 
     /* CTA dark section */
     .cta-dark {
       background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2d1b69 100%);
     }
 
-    /* Sticky header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      transition: box-shadow .3s;
-    }
-    header.scrolled {
-      box-shadow: 0 4px 20px rgba(109,40,217,.15);
-    }
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
 <!-- ═══════════════════════════════════════════ HEADER ═══ -->
-<header class="bg-white border-b border-slate-100" id="main-header">
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/80 border-b border-white/10" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-
-      <!-- Logo -->
-      <a href="./landing.html" class="flex items-center gap-2 no-underline">
+      <a href="./landing.html" class="flex items-center gap-2 font-bold text-xl select-none">
         <span class="text-2xl">🦀</span>
-        <span class="font-black text-xl text-slate-800" data-zh="大閘蟹" data-en="Hairy Crab">大閘蟹</span>
+        <span class="gradient-text">大閘蟹</span>
       </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-1">
-        <a href="./landing.html#scenarios" class="nav-link px-3 py-1" data-zh="使用情境" data-en="Use Cases">使用情境</a>
-        <a href="./landing.html#features"  class="nav-link px-3 py-1" data-zh="功能" data-en="Features">功能</a>
-        <a href="./landing.html#pricing"   class="nav-link px-3 py-1" data-zh="方案" data-en="Pricing">方案</a>
-        <a href="./guide.html"             class="nav-link px-3 py-1" data-zh="步驟教學" data-en="Guide">步驟教學</a>
-        <a href="./install.html"           class="nav-link px-3 py-1" data-zh="安裝教學" data-en="Install">安裝教學</a>
-        <a href="#"                        class="nav-link active px-3 py-1" data-zh="進階功能" data-en="Advanced">進階功能</a>
-        <a href="./faq.html"               class="nav-link px-3 py-1" data-zh="FAQ" data-en="FAQ">FAQ</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
+        <a href="./landing.html#scenarios" class="hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+        <a href="./landing.html#features"  class="hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+        <a href="./landing.html#pricing"   class="hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+        <a href="./guide.html"    class="hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+        <a href="./install.html"  class="hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+        <a href="./advanced.html" class="hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+        <a href="./faq.html"      class="hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
       </nav>
-
-      <!-- Right buttons -->
       <div class="flex items-center gap-3">
         <button id="lang-btn"
-          class="text-sm font-bold px-4 py-1.5 rounded-full border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all duration-200">
+          class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full border border-gray-600 text-xs font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
           EN
         </button>
-        <!-- Hamburger -->
-        <button id="adv-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="選單">
-          <span class="block w-6 h-0.5 bg-slate-700 transition-all duration-300" id="ham-1"></span>
-          <span class="block w-6 h-0.5 bg-slate-700 transition-all duration-300" id="ham-2"></span>
-          <span class="block w-6 h-0.5 bg-slate-700 transition-all duration-300" id="ham-3"></span>
+        <a href="./landing.html#pricing"
+          class="hidden md:inline-flex gradient-bg text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
+          data-i18n="nav.cta">查看方案</a>
+        <button id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Menu">
+          <svg id="icon-hamburger" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </button>
-      </div>
-    </div>
-
-    <!-- Mobile Drawer -->
-    <div id="adv-mobile-menu">
-      <div class="py-4 flex flex-col gap-1 border-t border-slate-100">
-        <a href="./landing.html#scenarios" class="block px-4 py-2.5 text-slate-600 hover:text-accent hover:bg-violet-50 rounded-lg font-medium transition-all" data-zh="使用情境" data-en="Use Cases">使用情境</a>
-        <a href="./landing.html#features"  class="block px-4 py-2.5 text-slate-600 hover:text-accent hover:bg-violet-50 rounded-lg font-medium transition-all" data-zh="功能" data-en="Features">功能</a>
-        <a href="./landing.html#pricing"   class="block px-4 py-2.5 text-slate-600 hover:text-accent hover:bg-violet-50 rounded-lg font-medium transition-all" data-zh="方案" data-en="Pricing">方案</a>
-        <a href="./guide.html"             class="block px-4 py-2.5 text-slate-600 hover:text-accent hover:bg-violet-50 rounded-lg font-medium transition-all" data-zh="步驟教學" data-en="Guide">步驟教學</a>
-        <a href="./install.html"           class="block px-4 py-2.5 text-slate-600 hover:text-accent hover:bg-violet-50 rounded-lg font-medium transition-all" data-zh="安裝教學" data-en="Install">安裝教學</a>
-        <a href="#"                        class="block px-4 py-2.5 text-accent bg-violet-50 rounded-lg font-bold" data-zh="進階功能" data-en="Advanced">進階功能</a>
-        <a href="./faq.html"               class="block px-4 py-2.5 text-slate-600 hover:text-accent hover:bg-violet-50 rounded-lg font-medium transition-all" data-zh="FAQ" data-en="FAQ">FAQ</a>
       </div>
     </div>
   </div>
 </header>
+<div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-gray-950 z-40 shadow-2xl flex flex-col pt-20 px-6 pb-8" style="transform:translateX(100%);transition:transform 0.3s ease;">
+  <nav class="flex flex-col gap-1 text-gray-200 font-medium text-base">
+    <a href="./landing.html#scenarios" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+    <a href="./landing.html#features"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+    <a href="./landing.html#pricing"   class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+    <a href="./guide.html"    class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+    <a href="./install.html"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+    <a href="./advanced.html" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+    <a href="./faq.html"      class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
+  </nav>
+  <div class="mt-6 flex flex-col gap-3">
+    <button id="lang-btn-mobile"
+      class="w-full py-2.5 rounded-full border border-gray-600 text-sm font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+      EN
+    </button>
+    <a href="./landing.html#pricing"
+      class="mobile-link w-full text-center gradient-bg text-white text-sm font-semibold px-5 py-3 rounded-full hover:opacity-90 transition-opacity"
+      data-i18n="nav.cta">查看方案</a>
+  </div>
+</div>
+<div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-30 md:hidden"></div>
 
 <!-- ═══════════════════════════════════════════ HERO ═══ -->
 <section class="hero-gradient text-white pt-20 pb-16 px-4">
@@ -1264,74 +1257,47 @@ clawhub install --force skill-creator stock-info-explorer news-summary crypto-ma
 </section>
 
 <!-- ═══════════════════════════════════════════ FOOTER ═══ -->
-<footer class="bg-slate-900 text-slate-400 py-12 px-4">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <span class="text-3xl">🦀</span>
-        <div>
-          <div class="text-white font-black text-lg" data-zh="大閘蟹" data-en="Hairy Crab">大閘蟹</div>
-          <div class="text-slate-500 text-xs" data-zh="Telegram AI 助理平台" data-en="Telegram AI Assistant Platform">Telegram AI 助理平台</div>
+<footer style="background:#050508;" class="relative z-10 text-gray-400 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🦀</span>
+          <span class="text-white font-bold text-lg">大閘蟹</span>
         </div>
+        <p class="text-sm leading-relaxed text-gray-500">风浪越大，蟹越贵。<br>你的專屬 AI，住在 Telegram 裡。</p>
       </div>
-      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-        <a href="./landing.html#scenarios" class="hover:text-violet-400 transition-colors" data-zh="使用情境" data-en="Use Cases">使用情境</a>
-        <a href="./landing.html#features"  class="hover:text-violet-400 transition-colors" data-zh="功能" data-en="Features">功能</a>
-        <a href="./landing.html#pricing"   class="hover:text-violet-400 transition-colors" data-zh="方案" data-en="Pricing">方案</a>
-        <a href="./guide.html"             class="hover:text-violet-400 transition-colors" data-zh="步驟教學" data-en="Guide">步驟教學</a>
-        <a href="./install.html"           class="hover:text-violet-400 transition-colors" data-zh="安裝教學" data-en="Install">安裝教學</a>
-        <a href="#"                        class="text-violet-400 font-semibold" data-zh="進階功能" data-en="Advanced">進階功能</a>
-        <a href="./faq.html"               class="hover:text-violet-400 transition-colors" data-zh="FAQ" data-en="FAQ">FAQ</a>
-      </nav>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">產品</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="./landing.html#features"  class="hover:text-white transition-colors">功能介紹</a></li>
+          <li><a href="./landing.html#pricing"   class="hover:text-white transition-colors">方案價格</a></li>
+          <li><a href="./landing.html#compare"   class="hover:text-white transition-colors">對比分析</a></li>
+          <li><a href="./landing.html#scenarios" class="hover:text-white transition-colors">使用情境</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">幫助</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="./guide.html"    class="hover:text-white transition-colors">步驟教學</a></li>
+          <li><a href="./install.html"  class="hover:text-white transition-colors">安裝教學</a></li>
+          <li><a href="./advanced.html" class="hover:text-white transition-colors">進階功能</a></li>
+          <li><a href="./faq.html"      class="hover:text-white transition-colors">常見問題</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="section-divider my-8" style="background: linear-gradient(90deg, transparent, #334155, transparent);"></div>
-    <div class="text-center text-slate-500 text-sm">
-      © 2026 <span data-zh="大閘蟹" data-en="Hairy Crab">大閘蟹</span>. <span data-zh="All rights reserved." data-en="All rights reserved.">All rights reserved.</span>
+    <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-600">© 2026 大閘蟹. All rights reserved.</p>
+      <a href="https://t.me/dazhaxi" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-gray-400 transition-colors">
+        <svg class="w-4 h-4 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.33 13.982l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.818.577z"/></svg>
+        @dazhaxi
+      </a>
     </div>
   </div>
 </footer>
 
 <!-- ═══════════════════════════════════════════ SCRIPTS ═══ -->
 <script>
-  // ── Hamburger Menu ──────────────────────────────────────
-  const menuBtn = document.getElementById('adv-menu-btn');
-  const mobileMenu = document.getElementById('adv-mobile-menu');
-  const ham1 = document.getElementById('ham-1');
-  const ham2 = document.getElementById('ham-2');
-  const ham3 = document.getElementById('ham-3');
-  let menuOpen = false;
-
-  menuBtn.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
-    if (menuOpen) {
-      ham1.style.transform = 'rotate(45deg) translate(5px, 5px)';
-      ham2.style.opacity = '0';
-      ham3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
-    } else {
-      ham1.style.transform = '';
-      ham2.style.opacity = '';
-      ham3.style.transform = '';
-    }
-  });
-
-  // Close drawer on nav click
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      menuOpen = false;
-      mobileMenu.classList.remove('open');
-      ham1.style.transform = '';
-      ham2.style.opacity = '';
-      ham3.style.transform = '';
-    });
-  });
-
-  // ── Sticky Header Shadow ─────────────────────────────────
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('main-header');
-    header.classList.toggle('scrolled', window.scrollY > 10);
-  });
-
   // ── Scroll Reveal ────────────────────────────────────────
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1357,7 +1323,6 @@ clawhub install --force skill-creator stock-info-explorer news-summary crypto-ma
         btn.classList.remove('copied');
       }, 2000);
     }).catch(() => {
-      // fallback
       const ta = document.createElement('textarea');
       ta.value = text;
       document.body.appendChild(ta);
@@ -1372,23 +1337,21 @@ clawhub install --force skill-creator stock-info-explorer news-summary crypto-ma
       }, 2000);
     });
   }
-
-  // ── i18n ─────────────────────────────────────────────────
-  let currentLang = 'zh';
-  const langBtn = document.getElementById('lang-btn');
-
-  function applyLang(lang) {
-    document.querySelectorAll('[data-zh][data-en]').forEach(el => {
-      el.textContent = el.dataset[lang];
-    });
-    langBtn.textContent = lang === 'zh' ? 'EN' : '中';
-    document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
-  }
-
-  langBtn.addEventListener('click', () => {
-    currentLang = currentLang === 'zh' ? 'en' : 'zh';
-    applyLang(currentLang);
-  });
+</script>
+<script>
+const hamburger=document.getElementById('hamburger-btn'),mobileMenu=document.getElementById('mobile-menu'),overlay=document.getElementById('drawer-overlay'),iconOpen=document.getElementById('icon-hamburger'),iconClose=document.getElementById('icon-close');
+function openMenu(){mobileMenu.style.transform='translateX(0)';overlay.classList.remove('hidden');iconOpen.classList.add('hidden');iconClose.classList.remove('hidden');document.body.style.overflow='hidden';}
+function closeMenu(){mobileMenu.style.transform='translateX(100%)';overlay.classList.add('hidden');iconOpen.classList.remove('hidden');iconClose.classList.add('hidden');document.body.style.overflow='';}
+if(hamburger)hamburger.addEventListener('click',()=>{mobileMenu.style.transform==='translateX(0)'?closeMenu():openMenu();});
+if(overlay)overlay.addEventListener('click',closeMenu);
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMenu));
+let currentLang=localStorage.getItem('dzx-lang')||'zh';
+const navT={zh:{'nav.usecases':'使用情境','nav.features':'功能','nav.pricing':'方案','nav.guide':'步驟教學','nav.install':'安裝教學','nav.advanced':'進階功能','nav.faq':'常見問題','nav.cta':'查看方案'},en:{'nav.usecases':'Use Cases','nav.features':'Features','nav.pricing':'Pricing','nav.guide':'Setup Guide','nav.install':'Install Guide','nav.advanced':'Advanced','nav.faq':'FAQ','nav.cta':'View Plans'}};
+function applyNavLang(lang){const t=navT[lang];document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.getAttribute('data-i18n')])el.textContent=t[el.getAttribute('data-i18n')];});const next=lang==='zh'?'EN':'中';const b=document.getElementById('lang-btn');const bm=document.getElementById('lang-btn-mobile');if(b)b.textContent=next;if(bm)bm.textContent=next;}
+function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('dzx-lang',currentLang);applyNavLang(currentLang);}
+const lb=document.getElementById('lang-btn'),lbm=document.getElementById('lang-btn-mobile');
+if(lb)lb.addEventListener('click',toggleLang);if(lbm)lbm.addEventListener('click',toggleLang);
+applyNavLang(currentLang);
 </script>
 
 </body>

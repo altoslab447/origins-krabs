@@ -123,76 +123,63 @@
 <!-- ═══════════════════════════════════════════
      STICKY HEADER
 ══════════════════════════════════════════════ -->
-<header class="fixed top-0 left-0 right-0 z-50 header-blur bg-[#0f0a1e]/80 border-b border-white/5">
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/80 border-b border-white/10" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-
-      <!-- Logo -->
-      <a href="./landing.html" class="flex items-center gap-2 flex-shrink-0">
+      <a href="./landing.html" class="flex items-center gap-2 font-bold text-xl select-none">
         <span class="text-2xl">🦀</span>
-        <span class="font-bold text-lg tracking-tight text-white">大閘蟹</span>
+        <span class="gradient-text">大閘蟹</span>
       </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
-        <a href="./landing.html#scenarios" class="nav-link" data-i18n="nav_scenarios">使用情境</a>
-        <a href="./landing.html#features"  class="nav-link" data-i18n="nav_features">功能</a>
-        <a href="./landing.html#pricing"   class="nav-link" data-i18n="nav_pricing">方案</a>
-        <a href="./guide.html"             class="nav-link" data-i18n="nav_guide">步驟教學</a>
-        <a href="./install.html"           class="nav-link" data-i18n="nav_install">安裝教學</a>
-        <a href="./advanced.html"          class="nav-link" data-i18n="nav_advanced">進階功能</a>
-        <a href="./faq.html"               class="nav-link active-page" data-i18n="nav_faq">FAQ</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
+        <a href="./landing.html#scenarios" class="hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+        <a href="./landing.html#features"  class="hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+        <a href="./landing.html#pricing"   class="hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+        <a href="./guide.html"    class="hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+        <a href="./install.html"  class="hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+        <a href="./advanced.html" class="hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+        <a href="./faq.html"      class="hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
       </nav>
-
-      <!-- Right controls -->
       <div class="flex items-center gap-3">
-        <!-- Lang button -->
         <button id="lang-btn"
-          class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border border-accent/50 text-accent hover:bg-accent/10 transition-colors"
-          onclick="toggleLang()">EN</button>
-
-        <!-- Mobile CTA -->
+          class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full border border-gray-600 text-xs font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+          EN
+        </button>
         <a href="./landing.html#pricing"
-          class="md:hidden px-3 py-1.5 rounded-full bg-accent text-white text-xs font-semibold"
-          data-i18n="nav_cta">查看方案</a>
-
-        <!-- Hamburger -->
-        <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
-          onclick="toggleMenu()" aria-label="選單">
-          <svg id="icon-menu" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <line x1="3" y1="6"  x2="21" y2="6"  stroke-linecap="round"/>
-            <line x1="3" y1="12" x2="21" y2="12" stroke-linecap="round"/>
-            <line x1="3" y1="18" x2="21" y2="18" stroke-linecap="round"/>
+          class="hidden md:inline-flex gradient-bg text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
+          data-i18n="nav.cta">查看方案</a>
+        <button id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Menu">
+          <svg id="icon-hamburger" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
-          <svg id="icon-close" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <line x1="4" y1="4" x2="20" y2="20" stroke-linecap="round"/>
-            <line x1="20" y1="4" x2="4"  y2="20" stroke-linecap="round"/>
+          <svg id="icon-close" class="w-6 h-6 text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
     </div>
   </div>
-
-  <!-- Mobile Drawer -->
-  <div id="mobile-menu" class="md:hidden border-t border-white/5 bg-[#0f0a1e]/95">
-    <nav class="flex flex-col px-6 py-4 gap-4 text-sm text-slate-300">
-      <a href="./landing.html#scenarios" class="hover:text-accent transition-colors" data-i18n="nav_scenarios" onclick="closeMenu()">使用情境</a>
-      <a href="./landing.html#features"  class="hover:text-accent transition-colors" data-i18n="nav_features"  onclick="closeMenu()">功能</a>
-      <a href="./landing.html#pricing"   class="hover:text-accent transition-colors" data-i18n="nav_pricing"   onclick="closeMenu()">方案</a>
-      <a href="./guide.html"             class="hover:text-accent transition-colors" data-i18n="nav_guide"     onclick="closeMenu()">步驟教學</a>
-      <a href="./install.html"           class="hover:text-accent transition-colors" data-i18n="nav_install"   onclick="closeMenu()">安裝教學</a>
-      <a href="./advanced.html"          class="hover:text-accent transition-colors" data-i18n="nav_advanced"  onclick="closeMenu()">進階功能</a>
-      <a href="./faq.html"               class="text-accent font-medium"            data-i18n="nav_faq"       onclick="closeMenu()">FAQ</a>
-      <div class="pt-2 border-t border-white/10">
-        <button onclick="toggleLang(); closeMenu()"
-          class="flex items-center gap-2 text-accent text-xs font-semibold">
-          <span id="lang-btn-mobile">EN</span>
-          <span class="text-slate-400" data-i18n="lang_switch_label">切換語言</span>
-        </button>
-      </div>
-    </nav>
-  </div>
 </header>
+<div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-gray-950 z-40 shadow-2xl flex flex-col pt-20 px-6 pb-8" style="transform:translateX(100%);transition:transform 0.3s ease;">
+  <nav class="flex flex-col gap-1 text-gray-200 font-medium text-base">
+    <a href="./landing.html#scenarios" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+    <a href="./landing.html#features"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+    <a href="./landing.html#pricing"   class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+    <a href="./guide.html"    class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+    <a href="./install.html"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+    <a href="./advanced.html" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+    <a href="./faq.html"      class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
+  </nav>
+  <div class="mt-6 flex flex-col gap-3">
+    <button id="lang-btn-mobile"
+      class="w-full py-2.5 rounded-full border border-gray-600 text-sm font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+      EN
+    </button>
+    <a href="./landing.html#pricing"
+      class="mobile-link w-full text-center gradient-bg text-white text-sm font-semibold px-5 py-3 rounded-full hover:opacity-90 transition-opacity"
+      data-i18n="nav.cta">查看方案</a>
+  </div>
+</div>
+<div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-30 md:hidden"></div>
 
 
 <!-- ═══════════════════════════════════════════
@@ -271,36 +258,41 @@
 <!-- ═══════════════════════════════════════════
      FOOTER
 ══════════════════════════════════════════════ -->
-<footer class="border-t border-white/5 py-12 px-4">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-
-      <!-- Brand -->
-      <div>
-        <div class="flex items-center gap-2 mb-3">
+<footer style="background:#050508;" class="relative z-10 text-gray-400 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
           <span class="text-2xl">🦀</span>
-          <span class="font-bold text-white text-lg">大閘蟹</span>
+          <span class="text-white font-bold text-lg">大閘蟹</span>
         </div>
-        <p class="text-slate-500 text-sm max-w-xs" data-i18n="footer_tagline">
-          你的個人 AI 助理，住在 Telegram 裡
-        </p>
+        <p class="text-sm leading-relaxed text-gray-500">风浪越大，蟹越贵。<br>你的專屬 AI，住在 Telegram 裡。</p>
       </div>
-
-      <!-- Nav links -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-3 text-sm text-slate-400">
-        <a href="./landing.html#scenarios" class="hover:text-accent transition-colors" data-i18n="nav_scenarios">使用情境</a>
-        <a href="./landing.html#features"  class="hover:text-accent transition-colors" data-i18n="nav_features">功能</a>
-        <a href="./landing.html#pricing"   class="hover:text-accent transition-colors" data-i18n="nav_pricing">方案</a>
-        <a href="./guide.html"             class="hover:text-accent transition-colors" data-i18n="nav_guide">步驟教學</a>
-        <a href="./install.html"           class="hover:text-accent transition-colors" data-i18n="nav_install">安裝教學</a>
-        <a href="./advanced.html"          class="hover:text-accent transition-colors" data-i18n="nav_advanced">進階功能</a>
-        <a href="./faq.html"               class="text-accent font-medium"            data-i18n="nav_faq">FAQ</a>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">產品</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="./landing.html#features"  class="hover:text-white transition-colors">功能介紹</a></li>
+          <li><a href="./landing.html#pricing"   class="hover:text-white transition-colors">方案價格</a></li>
+          <li><a href="./landing.html#compare"   class="hover:text-white transition-colors">對比分析</a></li>
+          <li><a href="./landing.html#scenarios" class="hover:text-white transition-colors">使用情境</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">幫助</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="./guide.html"    class="hover:text-white transition-colors">步驟教學</a></li>
+          <li><a href="./install.html"  class="hover:text-white transition-colors">安裝教學</a></li>
+          <li><a href="./advanced.html" class="hover:text-white transition-colors">進階功能</a></li>
+          <li><a href="./faq.html"      class="hover:text-white transition-colors">常見問題</a></li>
+        </ul>
       </div>
     </div>
-
-    <div class="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-      <span data-i18n="footer_copy">© 2025 大閘蟹. All rights reserved.</span>
-      <span data-i18n="footer_powered">Powered by OpenClaw &amp; Telegram</span>
+    <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-600">© 2026 大閘蟹. All rights reserved.</p>
+      <a href="https://t.me/dazhaxi" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-gray-400 transition-colors">
+        <svg class="w-4 h-4 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.33 13.982l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.818.577z"/></svg>
+        @dazhaxi
+      </a>
     </div>
   </div>
 </footer>
@@ -320,6 +312,7 @@ const translations = {
     nav_install:      '安裝教學',
     nav_advanced:     '進階功能',
     nav_faq:          'FAQ',
+    'nav.faq':        'FAQ',
     nav_cta:          '查看方案',
     lang_switch_label:'切換語言',
     hero_title:       '常見問題',
@@ -346,6 +339,7 @@ const translations = {
     nav_install:      'Install',
     nav_advanced:     'Advanced',
     nav_faq:          'FAQ',
+    'nav.faq':        'FAQ',
     nav_cta:          'View Plans',
     lang_switch_label:'Switch Language',
     hero_title:       'FAQ',
@@ -595,32 +589,6 @@ function toggleLang() {
   applyLang(currentLang === 'zh' ? 'en' : 'zh');
 }
 
-// ─── Mobile menu ─────────────────────────────────────────────────────────────
-function toggleMenu() {
-  const menu   = document.getElementById('mobile-menu');
-  const iconM  = document.getElementById('icon-menu');
-  const iconX  = document.getElementById('icon-close');
-  const isOpen = menu.classList.contains('open');
-  if (isOpen) {
-    menu.classList.remove('open');
-    iconM.classList.remove('hidden');
-    iconX.classList.add('hidden');
-  } else {
-    menu.classList.add('open');
-    iconM.classList.add('hidden');
-    iconX.classList.remove('hidden');
-  }
-}
-
-function closeMenu() {
-  const menu  = document.getElementById('mobile-menu');
-  const iconM = document.getElementById('icon-menu');
-  const iconX = document.getElementById('icon-close');
-  menu.classList.remove('open');
-  iconM.classList.remove('hidden');
-  iconX.classList.add('hidden');
-}
-
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
 function observeReveal() {
   const observer = new IntersectionObserver((entries) => {
@@ -647,6 +615,22 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLang(currentLang);
   observeReveal();
 });
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const overlay = document.getElementById('drawer-overlay');
+const iconOpen = document.getElementById('icon-hamburger');
+const iconClose = document.getElementById('icon-close');
+function openMenu() { mobileMenu.style.transform='translateX(0)'; overlay.classList.remove('hidden'); iconOpen.classList.add('hidden'); iconClose.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+function closeMenu() { mobileMenu.style.transform='translateX(100%)'; overlay.classList.add('hidden'); iconOpen.classList.remove('hidden'); iconClose.classList.add('hidden'); document.body.style.overflow=''; }
+if(hamburger) hamburger.addEventListener('click', ()=>{ mobileMenu.style.transform==='translateX(0)'?closeMenu():openMenu(); });
+if(overlay) overlay.addEventListener('click', closeMenu);
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMenu));
+
+// Lang toggle (nav.* keys for canonical nav elements)
+const navT = { zh:{'nav.usecases':'使用情境','nav.features':'功能','nav.pricing':'方案','nav.guide':'步驟教學','nav.install':'安裝教學','nav.advanced':'進階功能','nav.faq':'常見問題','nav.cta':'查看方案'}, en:{'nav.usecases':'Use Cases','nav.features':'Features','nav.pricing':'Pricing','nav.guide':'Setup Guide','nav.install':'Install Guide','nav.advanced':'Advanced','nav.faq':'FAQ','nav.cta':'View Plans'} };
+function applyNavLang(lang){ const t=navT[lang]; document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(t[k])el.textContent=t[k]; }); const next=lang==='zh'?'EN':'中'; const b=document.getElementById('lang-btn'); const bm=document.getElementById('lang-btn-mobile'); if(b)b.textContent=next; if(bm)bm.textContent=next; }
 </script>
 </body>
 </html>

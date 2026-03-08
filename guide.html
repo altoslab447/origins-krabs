@@ -8,26 +8,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* ── CSS Variables ── */
     :root {
       --accent:       #6d28d9;
       --accent-light: #7c3aed;
       --accent-dark:  #5b21b6;
-      --accent-50:    #f5f3ff;
-      --accent-100:   #ede9fe;
-      --accent-200:   #ddd6fe;
-      --text-primary: #111827;
-      --text-secondary: #6b7280;
-      --text-muted:   #9ca3af;
-      --bg-white:     #ffffff;
-      --bg-gray:      #f9fafb;
-      --border:       #e5e7eb;
+      --accent-50:    #1e1533;
+      --accent-100:   #2d1f4e;
+      --accent-200:   #3d2b6e;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --text-muted:   #6b7280;
+      --bg-white:     #080810;
+      --bg-gray:      #0d0d1a;
+      --border:       #374151;
       --radius:       0.75rem;
       --radius-sm:    0.5rem;
-      --shadow-sm:    0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-      --shadow-md:    0 4px 16px rgba(0,0,0,.08);
-      --shadow-lg:    0 10px 40px rgba(0,0,0,.12);
+      --shadow-sm:    0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
+      --shadow-md:    0 4px 16px rgba(0,0,0,.4);
+      --shadow-lg:    0 10px 40px rgba(0,0,0,.5);
     }
 
     /* ── Reset & Base ── */
@@ -36,13 +37,24 @@
     body {
       font-family: 'Noto Sans HK', sans-serif;
       color: var(--text-primary);
-      background: var(--bg-white);
+      background: #080810;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
     img { max-width: 100%; display: block; }
+
+    /* ── Gradient text & bg ── */
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #a855f7 100%);
+    }
 
     /* ── Reveal Animation ── */
     .reveal {
@@ -77,151 +89,11 @@
     }
 
     /* ══════════════════════════════
-       HEADER / NAV
-    ══════════════════════════════ */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      gap: 1rem;
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .nav-logo .logo-emoji { font-size: 1.35rem; }
-
-    /* Desktop nav links */
-    .nav-links {
-      display: none;
-      align-items: center;
-      gap: 1rem;
-      flex: 1;
-      justify-content: center;
-    }
-    @media (min-width: 768px) {
-      .nav-links { display: flex; }
-    }
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active { color: var(--accent); font-weight: 700; }
-
-    /* Right side controls */
-    .nav-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-shrink: 0;
-    }
-    .lang-btn {
-      font-family: 'Noto Sans HK', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 0.3rem 0.7rem;
-      border: 1.5px solid var(--border);
-      border-radius: 999px;
-      background: transparent;
-      cursor: pointer;
-      color: var(--text-secondary);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Mobile CTA button */
-    .mobile-cta-btn {
-      display: inline-flex;
-      font-family: 'Noto Sans HK', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 0.35rem 0.9rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      white-space: nowrap;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .mobile-cta-btn:hover { background: var(--accent-light); }
-    @media (min-width: 768px) {
-      .mobile-cta-btn { display: none; }
-    }
-
-    /* Hamburger */
-    .hamburger-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-primary);
-    }
-    @media (min-width: 768px) {
-      .hamburger-btn { display: none; }
-    }
-
-    /* Mobile Drawer */
-    .mobile-menu {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
-      border-bottom: 1px solid transparent;
-      background: #fff;
-    }
-    .mobile-menu.open {
-      max-height: 480px;
-      border-bottom-color: var(--border);
-    }
-    .mobile-menu-inner {
-      padding: 0.75rem 1.5rem 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-    .mobile-menu-inner a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      padding: 0.55rem 0;
-      border-bottom: 1px solid var(--bg-gray);
-      transition: color 0.2s;
-    }
-    .mobile-menu-inner a:last-child { border-bottom: none; }
-    .mobile-menu-inner a:hover { color: var(--accent); }
-    .mobile-menu-inner a.active { color: var(--accent); font-weight: 700; }
-
-    /* ══════════════════════════════
        HERO
     ══════════════════════════════ */
     .hero {
-      background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 40%, #ddd6fe 100%);
-      padding: 5rem 0 4rem;
+      background: linear-gradient(135deg, #0d0820 0%, #130a2e 40%, #1a0d3d 100%);
+      padding: 7rem 0 4rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -231,7 +103,7 @@
       position: absolute;
       top: -80px; right: -80px;
       width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(109,40,217,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(109,40,217,0.25) 0%, transparent 70%);
       border-radius: 50%;
     }
     .hero::after {
@@ -239,7 +111,7 @@
       position: absolute;
       bottom: -60px; left: -60px;
       width: 250px; height: 250px;
-      background: radial-gradient(circle, rgba(109,40,217,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(109,40,217,0.15) 0%, transparent 70%);
       border-radius: 50%;
     }
     .hero-badge {
@@ -261,7 +133,7 @@
       color: var(--text-primary);
       margin-bottom: 1rem;
     }
-    .hero h1 span { color: var(--accent); }
+    .hero h1 span { color: var(--accent-light); }
     .hero-sub {
       font-size: clamp(1rem, 2.5vw, 1.15rem);
       color: var(--text-secondary);
@@ -284,8 +156,8 @@
       .overview-cards { grid-template-columns: 1fr; max-width: 340px; }
     }
     .overview-card {
-      background: rgba(255,255,255,0.85);
-      border: 1.5px solid rgba(109,40,217,0.2);
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(109,40,217,0.3);
       border-radius: var(--radius);
       padding: 1.4rem 1rem;
       display: flex;
@@ -298,21 +170,21 @@
     }
     .overview-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(109,40,217,0.15);
-      border-color: var(--accent);
+      box-shadow: 0 8px 28px rgba(109,40,217,0.25);
+      border-color: var(--accent-light);
     }
     .overview-card .ov-emoji { font-size: 2rem; }
     .overview-card .ov-step {
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.1em;
-      color: var(--accent);
+      color: #a78bfa;
       text-transform: uppercase;
     }
     .overview-card .ov-title {
       font-size: 0.92rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: #e5e7eb;
       text-align: center;
       line-height: 1.4;
     }
@@ -324,7 +196,7 @@
       padding: 5rem 0;
     }
     .step-section:nth-child(even) {
-      background: var(--bg-gray);
+      background: #0d0d1a;
     }
 
     .step-header {
@@ -335,25 +207,26 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--accent-100);
-      color: var(--accent);
+      background: rgba(109,40,217,0.2);
+      color: #a78bfa;
       font-size: 0.78rem;
       font-weight: 700;
       padding: 0.35rem 1rem;
       border-radius: 999px;
       margin-bottom: 1rem;
       letter-spacing: 0.05em;
+      border: 1px solid rgba(109,40,217,0.3);
     }
     .step-header h2 {
       font-size: clamp(1.6rem, 4vw, 2.2rem);
       font-weight: 900;
-      color: var(--text-primary);
+      color: #f3f4f6;
       margin-bottom: 0.75rem;
       line-height: 1.25;
     }
     .step-header p {
       font-size: 1rem;
-      color: var(--text-secondary);
+      color: #9ca3af;
       max-width: 580px;
       margin: 0 auto;
       line-height: 1.7;
@@ -370,8 +243,8 @@
     }
 
     .provider-card {
-      background: var(--bg-white);
-      border: 1.5px solid var(--border);
+      background: #111127;
+      border: 1.5px solid #374151;
       border-radius: var(--radius);
       padding: 1.75rem;
       box-shadow: var(--shadow-sm);
@@ -380,7 +253,7 @@
     .provider-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
-      border-color: var(--accent-200);
+      border-color: rgba(109,40,217,0.5);
     }
     .provider-header {
       display: flex;
@@ -393,18 +266,19 @@
     .provider-name {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: #f3f4f6;
       line-height: 1.3;
     }
     .provider-tag {
       display: inline-block;
       font-size: 0.68rem;
       font-weight: 600;
-      background: var(--accent-100);
-      color: var(--accent);
+      background: rgba(109,40,217,0.2);
+      color: #a78bfa;
       padding: 0.15rem 0.55rem;
       border-radius: 999px;
       margin-top: 0.25rem;
+      border: 1px solid rgba(109,40,217,0.3);
     }
     .provider-steps {
       display: flex;
@@ -432,22 +306,23 @@
     }
     .ps-text {
       font-size: 0.875rem;
-      color: var(--text-secondary);
+      color: #9ca3af;
       line-height: 1.55;
     }
     .ps-text a {
-      color: var(--accent);
+      color: #a78bfa;
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-    .ps-text a:hover { color: var(--accent-dark); }
+    .ps-text a:hover { color: #c4b5fd; }
     code {
       font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
       font-size: 0.8em;
-      background: #f3f4f6;
+      background: #1e1b2e;
       border-radius: 4px;
       padding: 0.1em 0.4em;
-      color: var(--accent-dark);
+      color: #a78bfa;
+      border: 1px solid #374151;
     }
 
     /* ══════════════════════════════
@@ -492,25 +367,25 @@
     }
     .tg-step-content p {
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: #9ca3af;
       line-height: 1.6;
     }
     .tg-step-content strong {
-      color: var(--text-primary);
+      color: #e5e7eb;
       font-weight: 600;
     }
 
     /* Important notes box */
     .notes-box {
-      background: #fffbeb;
-      border: 1.5px solid #fbbf24;
+      background: #1c1400;
+      border: 1.5px solid #92400e;
       border-radius: var(--radius);
       padding: 1.5rem;
     }
     .notes-box-title {
       font-size: 0.9rem;
       font-weight: 700;
-      color: #92400e;
+      color: #fbbf24;
       margin-bottom: 0.9rem;
       display: flex;
       align-items: center;
@@ -523,10 +398,10 @@
     }
     .notes-box li {
       font-size: 0.875rem;
-      color: #78350f;
+      color: #d97706;
       line-height: 1.5;
       padding-left: 0.5rem;
-      border-left: 3px solid #fbbf24;
+      border-left: 3px solid #92400e;
     }
 
     /* ══════════════════════════════
@@ -542,8 +417,8 @@
     }
 
     .checklist-card {
-      background: var(--bg-white);
-      border: 1.5px solid var(--border);
+      background: #111127;
+      border: 1.5px solid #374151;
       border-radius: var(--radius);
       padding: 2rem;
       box-shadow: var(--shadow-sm);
@@ -551,7 +426,7 @@
     .checklist-card h3 {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: #f3f4f6;
       margin-bottom: 1.2rem;
       display: flex;
       align-items: center;
@@ -567,7 +442,7 @@
       align-items: flex-start;
       gap: 0.75rem;
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: #9ca3af;
       line-height: 1.5;
     }
     .check-icon {
@@ -575,8 +450,8 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #d1fae5;
-      color: #059669;
+      background: #064e3b;
+      color: #34d399;
       font-size: 0.7rem;
       display: flex;
       align-items: center;
@@ -585,15 +460,15 @@
       font-weight: 700;
     }
     .we-do-card {
-      background: linear-gradient(135deg, var(--accent-50) 0%, var(--accent-100) 100%);
-      border: 1.5px solid var(--accent-200);
+      background: linear-gradient(135deg, #130a2e 0%, #1e1040 100%);
+      border: 1.5px solid rgba(109,40,217,0.4);
       border-radius: var(--radius);
       padding: 2rem;
     }
     .we-do-card h3 {
       font-size: 1rem;
       font-weight: 700;
-      color: var(--accent-dark);
+      color: #c4b5fd;
       margin-bottom: 1.2rem;
     }
     .we-do-items {
@@ -606,7 +481,7 @@
       align-items: flex-start;
       gap: 0.75rem;
       font-size: 0.9rem;
-      color: var(--accent-dark);
+      color: #a78bfa;
       line-height: 1.5;
     }
     .we-do-item span:first-child { flex-shrink: 0; font-size: 1rem; }
@@ -684,67 +559,9 @@
     }
 
     /* ══════════════════════════════
-       FOOTER
-    ══════════════════════════════ */
-    .site-footer {
-      background: #111827;
-      color: #d1d5db;
-      padding: 4rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    @media (max-width: 768px) {
-      .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    }
-    @media (max-width: 420px) {
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-    .footer-col h4 {
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-    .footer-col ul {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-    .footer-col ul li a {
-      font-size: 0.875rem;
-      color: #9ca3af;
-      transition: color 0.2s;
-    }
-    .footer-col ul li a:hover { color: #fff; }
-    .footer-col .footer-brand {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .footer-col .footer-tagline {
-      font-size: 0.82rem;
-      color: #6b7280;
-      line-height: 1.6;
-    }
-    .footer-bottom {
-      border-top: 1px solid #1f2937;
-      padding-top: 1.5rem;
-      text-align: center;
-      font-size: 0.82rem;
-      color: #6b7280;
-    }
-
-    /* ══════════════════════════════
        Utility
     ══════════════════════════════ */
-    .text-accent { color: var(--accent); }
+    .text-accent { color: var(--accent-light); }
     .sr-only {
       position: absolute;
       width: 1px;
@@ -757,58 +574,66 @@
     }
   </style>
 </head>
-<body>
+<body style="background:#080810;color:#e5e7eb;">
 
-  <!-- ══ HEADER ══ -->
-  <header class="site-header">
-    <div class="container">
-      <nav class="nav-inner">
-        <!-- Logo -->
-        <a href="./landing.html" class="nav-logo">
-          <span class="logo-emoji">🦀</span>
-          <span data-i18n="brand">大閘蟹</span>
+  <!-- ══ CANONICAL DARK HEADER ══ -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 border-b border-white/10" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="./landing.html" class="flex items-center gap-2 font-bold text-xl select-none">
+          <span class="text-2xl">🦀</span>
+          <span class="gradient-text">大閘蟹</span>
         </a>
-
-        <!-- Desktop Nav -->
-        <ul class="nav-links" role="list">
-          <li><a href="./landing.html#scenarios" data-i18n="nav_scenarios">使用情境</a></li>
-          <li><a href="./landing.html#features"  data-i18n="nav_features">功能</a></li>
-          <li><a href="./landing.html#pricing"   data-i18n="nav_pricing">方案</a></li>
-          <li><a href="./guide.html"              data-i18n="nav_guide" class="active">步驟教學</a></li>
-          <li><a href="./install.html"            data-i18n="nav_install">安裝教學</a></li>
-          <li><a href="./advanced.html"           data-i18n="nav_advanced">進階功能</a></li>
-          <li><a href="./faq.html"                data-i18n="nav_faq">FAQ</a></li>
-        </ul>
-
-        <!-- Right Controls -->
-        <div class="nav-controls">
-          <button class="lang-btn" id="lang-btn" aria-label="切換語言">EN</button>
-          <a href="https://t.me/dazhaxi" class="mobile-cta-btn" data-i18n="mobile_cta">立即開始</a>
-          <button class="hamburger-btn" id="guide-menu-btn" aria-label="開啟選單" aria-expanded="false">
-            <svg id="guide-icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
+          <a href="./landing.html#scenarios" class="hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+          <a href="./landing.html#features"  class="hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+          <a href="./landing.html#pricing"   class="hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+          <a href="./guide.html"    class="hover:text-violet-400 transition-colors text-violet-400" data-i18n="nav.guide">步驟教學</a>
+          <a href="./install.html"  class="hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+          <a href="./advanced.html" class="hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+          <a href="./faq.html"      class="hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="lang-btn"
+            class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full border border-gray-600 text-xs font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+            EN
+          </button>
+          <a href="./landing.html#pricing"
+            class="hidden md:inline-flex gradient-bg text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
+            data-i18n="nav.cta">查看方案</a>
+          <button id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Menu">
+            <svg id="icon-hamburger" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
-            <svg id="guide-icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:none;">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            <svg id="icon-close" class="w-6 h-6 text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
-      </nav>
-    </div>
-
-    <!-- Mobile Drawer -->
-    <div class="mobile-menu" id="guide-mobile-menu" role="navigation" aria-label="Mobile navigation">
-      <div class="mobile-menu-inner">
-        <a href="./landing.html#scenarios" data-i18n="nav_scenarios">使用情境</a>
-        <a href="./landing.html#features"  data-i18n="nav_features">功能</a>
-        <a href="./landing.html#pricing"   data-i18n="nav_pricing">方案</a>
-        <a href="./guide.html"             data-i18n="nav_guide" class="active">步驟教學</a>
-        <a href="./install.html"           data-i18n="nav_install">安裝教學</a>
-        <a href="./advanced.html"          data-i18n="nav_advanced">進階功能</a>
-        <a href="./faq.html"              data-i18n="nav_faq">FAQ</a>
       </div>
     </div>
   </header>
+  <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-gray-950 z-40 shadow-2xl flex flex-col pt-20 px-6 pb-8" style="transform:translateX(100%);transition:transform 0.3s ease;">
+    <nav class="flex flex-col gap-1 text-gray-200 font-medium text-base">
+      <a href="./landing.html#scenarios" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+      <a href="./landing.html#features"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+      <a href="./landing.html#pricing"   class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+      <a href="./guide.html"    class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+      <a href="./install.html"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+      <a href="./advanced.html" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+      <a href="./faq.html"      class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
+    </nav>
+    <div class="mt-6 flex flex-col gap-3">
+      <button id="lang-btn-mobile"
+        class="w-full py-2.5 rounded-full border border-gray-600 text-sm font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+        EN
+      </button>
+      <a href="./landing.html#pricing"
+        class="mobile-link w-full text-center gradient-bg text-white text-sm font-semibold px-5 py-3 rounded-full hover:opacity-90 transition-opacity"
+        data-i18n="nav.cta">查看方案</a>
+    </div>
+  </div>
+  <div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-30 md:hidden"></div>
 
   <!-- ══ HERO ══ -->
   <section class="hero">
@@ -1137,52 +962,42 @@
     </div>
   </section>
 
-  <!-- ══ FOOTER ══ -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Brand -->
-        <div class="footer-col">
-          <div class="footer-brand">🦀 大閘蟹</div>
-          <p class="footer-tagline" data-i18n="footer_tagline">你的專屬 AI 助理，<br>一鍵部署，立即對話。</p>
+  <!-- ══ CANONICAL DARK FOOTER ══ -->
+  <footer style="background:#050508;" class="relative z-10 text-gray-400 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">🦀</span>
+            <span class="text-white font-bold text-lg">大閘蟹</span>
+          </div>
+          <p class="text-sm leading-relaxed text-gray-500">风浪越大，蟹越贵。<br>你的專屬 AI，住在 Telegram 裡。</p>
         </div>
-        <!-- 產品 -->
-        <div class="footer-col">
-          <h4 data-i18n="footer_col1_title">產品</h4>
-          <ul>
-            <li><a href="./landing.html#features" data-i18n="footer_features">功能介紹</a></li>
-            <li><a href="./landing.html#pricing"  data-i18n="footer_pricing">方案比較</a></li>
-            <li><a href="./guide.html"             data-i18n="footer_guide">步驟教學</a></li>
-            <li><a href="./install.html"           data-i18n="footer_install">安裝教學</a></li>
-            <li><a href="./advanced.html"          data-i18n="footer_advanced">進階功能</a></li>
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">產品</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./landing.html#features"  class="hover:text-white transition-colors">功能介紹</a></li>
+            <li><a href="./landing.html#pricing"   class="hover:text-white transition-colors">方案價格</a></li>
+            <li><a href="./landing.html#compare"   class="hover:text-white transition-colors">對比分析</a></li>
+            <li><a href="./landing.html#scenarios" class="hover:text-white transition-colors">使用情境</a></li>
           </ul>
         </div>
-        <!-- 幫助 -->
-        <div class="footer-col">
-          <h4 data-i18n="footer_col2_title">幫助</h4>
-          <ul>
-            <li><a href="./faq.html"              data-i18n="footer_faq">FAQ</a></li>
-            <li><a href="./guide.html#step-api"   data-i18n="footer_api_guide">API Key 教學</a></li>
-            <li><a href="./guide.html#step-tg"    data-i18n="footer_tg_guide">Telegram Bot 設定</a></li>
-          </ul>
-        </div>
-        <!-- 聯繫 & 技術 -->
-        <div class="footer-col">
-          <h4 data-i18n="footer_col3_title">聯繫</h4>
-          <ul>
-            <li><a href="https://t.me/dazhaxi" target="_blank" rel="noopener">Telegram @dazhaxi</a></li>
-          </ul>
-          <br/>
-          <h4 data-i18n="footer_col4_title">技術</h4>
-          <ul>
-            <li><span data-i18n="footer_tech1">Telegram Bot</span></li>
-            <li><span data-i18n="footer_tech2">Cloud Hosting</span></li>
-            <li><span data-i18n="footer_tech3">OpenClaw</span></li>
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">幫助</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="./guide.html"    class="hover:text-white transition-colors">步驟教學</a></li>
+            <li><a href="./install.html"  class="hover:text-white transition-colors">安裝教學</a></li>
+            <li><a href="./advanced.html" class="hover:text-white transition-colors">進階功能</a></li>
+            <li><a href="./faq.html"      class="hover:text-white transition-colors">常見問題</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p data-i18n="footer_copy">© 2026 大閘蟹. All rights reserved.</p>
+      <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-600">© 2026 大閘蟹. All rights reserved.</p>
+        <a href="https://t.me/dazhaxi" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-gray-400 transition-colors">
+          <svg class="w-4 h-4 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.33 13.982l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.818.577z"/></svg>
+          @dazhaxi
+        </a>
       </div>
     </div>
   </footer>
@@ -1201,6 +1016,16 @@
         nav_advanced:     '進階功能',
         nav_faq:          'FAQ',
         mobile_cta:       '立即開始',
+
+        // nav dot-key variants (canonical header)
+        'nav.usecases':   '使用情境',
+        'nav.features':   '功能',
+        'nav.pricing':    '方案',
+        'nav.guide':      '步驟教學',
+        'nav.install':    '安裝教學',
+        'nav.advanced':   '進階功能',
+        'nav.faq':        '常見問題',
+        'nav.cta':        '查看方案',
 
         hero_badge:       'STEP BY STEP',
         hero_h1_pre:      '三步驟開始使用',
@@ -1315,6 +1140,16 @@
         nav_advanced:     'Advanced',
         nav_faq:          'FAQ',
         mobile_cta:       'Start Now',
+
+        // nav dot-key variants (canonical header)
+        'nav.usecases':   'Use Cases',
+        'nav.features':   'Features',
+        'nav.pricing':    'Pricing',
+        'nav.guide':      'Setup Guide',
+        'nav.install':    'Install Guide',
+        'nav.advanced':   'Advanced',
+        'nav.faq':        'FAQ',
+        'nav.cta':        'View Plans',
 
         hero_badge:       'STEP BY STEP',
         hero_h1_pre:      '3 Steps to Start Using ',
@@ -1437,39 +1272,60 @@
         }
       });
 
-      // Update lang button label
-      document.getElementById('lang-btn').textContent = lang === 'zh' ? 'EN' : '中';
+      // Update lang button labels
+      const label = lang === 'zh' ? 'EN' : '中';
+      const lb = document.getElementById('lang-btn');
+      const lbm = document.getElementById('lang-btn-mobile');
+      if (lb) lb.textContent = label;
+      if (lbm) lbm.textContent = label;
 
       // Update html lang attribute
       document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
     }
 
-    // Lang button toggle
-    document.getElementById('lang-btn').addEventListener('click', () => {
+    function toggleLang() {
       applyLang(currentLang === 'zh' ? 'en' : 'zh');
-    });
+    }
 
-    // ── Mobile hamburger ──
-    const menuBtn   = document.getElementById('guide-menu-btn');
-    const mobileMenu = document.getElementById('guide-mobile-menu');
-    const iconOpen  = document.getElementById('guide-icon-open');
-    const iconClose = document.getElementById('guide-icon-close');
+    // Lang button toggles
+    const lb = document.getElementById('lang-btn');
+    const lbm = document.getElementById('lang-btn-mobile');
+    if (lb) lb.addEventListener('click', toggleLang);
+    if (lbm) lbm.addEventListener('click', toggleLang);
 
-    menuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', isOpen);
-      iconOpen.style.display  = isOpen ? 'none'  : 'block';
-      iconClose.style.display = isOpen ? 'block' : 'none';
-    });
+    // ── Mobile hamburger (canonical) ──
+    const hamburgerBtn   = document.getElementById('hamburger-btn');
+    const mobileMenu     = document.getElementById('mobile-menu');
+    const drawerOverlay  = document.getElementById('drawer-overlay');
+    const iconHamburger  = document.getElementById('icon-hamburger');
+    const iconClose      = document.getElementById('icon-close');
 
-    // Close mobile menu when a link is clicked
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        iconOpen.style.display  = 'block';
-        iconClose.style.display = 'none';
+    function openMenu() {
+      mobileMenu.style.transform = 'translateX(0)';
+      drawerOverlay.classList.remove('hidden');
+      iconHamburger.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    }
+    function closeMenu() {
+      mobileMenu.style.transform = 'translateX(100%)';
+      drawerOverlay.classList.add('hidden');
+      iconHamburger.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.style.transform === 'translateX(0px)' || mobileMenu.style.transform === 'translateX(0)';
+        isOpen ? closeMenu() : openMenu();
       });
+    }
+    if (drawerOverlay) {
+      drawerOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close on mobile link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
 
     // ── Scroll reveal ──

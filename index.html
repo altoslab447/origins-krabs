@@ -93,7 +93,7 @@
     #mobile-menu.open { transform: translateX(0); }
 
     /* Table zebra */
-    .compare-row:nth-child(even) { background: #f9fafb; }
+    .compare-row:nth-child(even) { background: rgba(109,40,217,0.06); }
 
     /* Plan popular ring */
     .plan-popular { box-shadow: 0 0 0 2px #6d28d9, 0 20px 50px rgba(109,40,217,0.2); }
@@ -102,17 +102,17 @@
     .provider-chip {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 6px 14px; border-radius: 999px;
-      background: #f3f4f6; font-size: 0.82rem; font-weight: 500;
+      background: rgba(255,255,255,0.08); font-size: 0.82rem; font-weight: 500; color: #c4b5fd;
       transition: background 0.2s;
     }
-    .provider-chip:hover { background: #ede9fe; }
+    .provider-chip:hover { background: rgba(255,255,255,0.14); color: #e9d5ff; }
 
     /* Scroll snap for mobile cards */
     .snap-x { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
     .snap-start { scroll-snap-align: start; }
   </style>
 </head>
-<body class="bg-white text-gray-900 overflow-x-hidden">
+<body class="overflow-x-hidden" style="background:#080810;color:#e5e7eb;">
 
   <!-- Background orbs (hero section) -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -124,7 +124,7 @@
   <!-- ═══════════════════════════════════════════════════════════
        HEADER
   ════════════════════════════════════════════════════════════ -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 border-b border-gray-100">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
 
@@ -135,20 +135,20 @@
         </a>
 
         <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-          <a href="#scenarios" class="hover:text-violet-700 transition-colors" data-i18n="nav.usecases">使用情境</a>
-          <a href="#features"  class="hover:text-violet-700 transition-colors" data-i18n="nav.features">功能</a>
-          <a href="#pricing"   class="hover:text-violet-700 transition-colors" data-i18n="nav.pricing">方案</a>
-          <a href="./guide.html"    class="hover:text-violet-700 transition-colors" data-i18n="nav.guide">步驟教學</a>
-          <a href="./install.html"  class="hover:text-violet-700 transition-colors" data-i18n="nav.install">安裝教學</a>
-          <a href="./advanced.html" class="hover:text-violet-700 transition-colors" data-i18n="nav.advanced">進階功能</a>
-          <a href="./faq.html"      class="hover:text-violet-700 transition-colors">FAQ</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
+          <a href="#scenarios" class="hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+          <a href="#features"  class="hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+          <a href="#pricing"   class="hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+          <a href="./guide.html"    class="hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+          <a href="./install.html"  class="hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+          <a href="./advanced.html" class="hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+          <a href="./faq.html" class="hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
         </nav>
 
         <!-- Right: Lang btn + CTA + Hamburger -->
         <div class="flex items-center gap-3">
           <button id="lang-btn"
-            class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full border border-gray-300 text-xs font-semibold text-gray-600 hover:border-violet-500 hover:text-violet-700 transition-colors">
+            class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full border border-gray-600 text-xs font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
             EN
           </button>
           <a href="#pricing"
@@ -157,7 +157,7 @@
 
           <!-- Mobile hamburger -->
           <button id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Menu">
-            <svg id="icon-hamburger" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="icon-hamburger" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
             <svg id="icon-close" class="w-6 h-6 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,19 +170,19 @@
   </header>
 
   <!-- Mobile Drawer -->
-  <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-white z-40 shadow-2xl flex flex-col pt-20 px-6 pb-8">
-    <nav class="flex flex-col gap-1 text-gray-700 font-medium text-base">
-      <a href="#scenarios" class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors" data-i18n="nav.usecases">使用情境</a>
-      <a href="#features"  class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors" data-i18n="nav.features">功能</a>
-      <a href="#pricing"   class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors" data-i18n="nav.pricing">方案</a>
-      <a href="./guide.html"    class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors" data-i18n="nav.guide">步驟教學</a>
-      <a href="./install.html"  class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors" data-i18n="nav.install">安裝教學</a>
-      <a href="./advanced.html" class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors" data-i18n="nav.advanced">進階功能</a>
-      <a href="./faq.html"      class="mobile-link py-3 border-b border-gray-100 hover:text-violet-700 transition-colors">FAQ</a>
+  <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-gray-950 z-40 shadow-2xl flex flex-col pt-20 px-6 pb-8">
+    <nav class="flex flex-col gap-1 text-gray-200 font-medium text-base">
+      <a href="#scenarios" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+      <a href="#features"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+      <a href="#pricing"   class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+      <a href="./guide.html"    class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+      <a href="./install.html"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+      <a href="./advanced.html" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+      <a href="./faq.html" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
     </nav>
     <div class="mt-6 flex flex-col gap-3">
       <button id="lang-btn-mobile"
-        class="w-full py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-gray-600 hover:border-violet-500 hover:text-violet-700 transition-colors">
+        class="w-full py-2.5 rounded-full border border-gray-600 text-sm font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
         EN
       </button>
       <a href="#pricing"
@@ -191,7 +191,7 @@
     </div>
   </div>
   <!-- Drawer overlay -->
-  <div id="drawer-overlay" class="hidden fixed inset-0 bg-black/30 z-30 md:hidden"></div>
+  <div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-30 md:hidden"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
        HERO
@@ -214,8 +214,8 @@
           </h1>
 
           <p class="text-gray-500 text-lg leading-relaxed mb-10 max-w-md" data-i18n-html="hero.sub">
-            当别人还在手动查资料，你的 AI 已经整理好放在 Telegram 里等你。<br>
-            <span class="font-semibold text-black">专属云端部署，24 小时不间断。</span>
+            當別人還在手動查資料，你的 AI 已經整理好放在 Telegram 裡等你。<br>
+            <span class="font-semibold text-white">專屬雲端部署，24 小時不間斷。</span>
           </p>
 
           <!-- Stats -->
@@ -388,15 +388,15 @@
   <!-- ═══════════════════════════════════════════════════════════
        WHAT IS
   ════════════════════════════════════════════════════════════ -->
-  <section class="relative z-10 py-24 bg-white">
+  <section class="relative z-10 py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <p class="text-violet-600 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="whatIs.label">什麼是大閘蟹？</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight mb-5" data-i18n-html="whatIs.h2">
+        <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="whatIs.label">什麼是大閘蟹？</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-5" data-i18n-html="whatIs.h2">
           不是工具，是你的<br>
-          <span class="gradient-text-2">专属数字雇员</span>
+          <span class="gradient-text-2">專屬數字僱員</span>
         </h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto" data-i18n="whatIs.sub">
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto" data-i18n="whatIs.sub">
           大閘蟹把 AI 安裝在雲端伺服器，綁定你的 Telegram。從此，隨時傳一句話，事情就做完了。
         </p>
       </div>
@@ -422,95 +422,97 @@
         </div>
       </div>
     </div>
+  
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
        SCENARIOS
   ════════════════════════════════════════════════════════════ -->
-  <section id="scenarios" class="relative z-10 py-24 bg-gray-50">
+  <section id="scenarios" class="relative z-10 py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <p class="text-violet-600 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="scenarios.label">非大閘蟹不可</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight mb-5" data-i18n-html="scenarios.h2">
+        <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="scenarios.label">非大閘蟹不可</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-5" data-i18n-html="scenarios.h2">
           這些事，<span class="gradient-text">ChatGPT 做不到</span>
         </h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto" data-i18n="scenarios.sub">
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto" data-i18n="scenarios.sub">
           不是哪個 AI 更聰明的問題。是大閘蟹 24 小時住在你的雲端、主動出擊；ChatGPT 等你去找它。
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Scenario 1 -->
-        <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
+        <div class="card-hover reveal bg-gray-900/60 rounded-2xl p-7 border border-gray-700/30">
           <div class="text-4xl mb-4">📋</div>
           <h3 class="text-lg font-bold text-gray-900 mb-2">早上八點自動送早報</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">設定一次，每天自動整理股市、幣價、天氣、新聞，推到你的 Telegram，比你鬧鐘還準時。</p>
+          <p class="text-gray-400 text-sm leading-relaxed">設定一次，每天自動整理股市、幣價、天氣、新聞，推到你的 Telegram，比你鬧鐘還準時。</p>
           <div class="mt-4 inline-flex items-center gap-1.5 bg-violet-50 text-violet-700 text-xs font-semibold px-3 py-1.5 rounded-full">⏰ 定時自動推送</div>
         </div>
 
         <!-- Scenario 2: Telegram only, not LINE -->
-        <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
+        <div class="card-hover reveal bg-gray-900/60 rounded-2xl p-7 border border-gray-700/30">
           <div class="text-4xl mb-4">🚨</div>
           <h3 class="text-lg font-bold text-gray-900 mb-2">幣價跌了，Telegram 直接叫你</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">不用一直盯著盤。設好價格警報，跌破或突破才通知你，直接推到 Telegram，一秒確認。</p>
+          <p class="text-gray-400 text-sm leading-relaxed">不用一直盯著盤。設好價格警報，跌破或突破才通知你，直接推到 Telegram，一秒確認。</p>
           <div class="mt-4 inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-semibold px-3 py-1.5 rounded-full">🔔 智能警報</div>
         </div>
 
         <!-- Scenario 3 -->
-        <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
+        <div class="card-hover reveal bg-gray-900/60 rounded-2xl p-7 border border-gray-700/30">
           <div class="text-4xl mb-4">📰</div>
           <h3 class="text-lg font-bold text-gray-900 mb-2">貼網址，三秒拿重點</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">看到長文章、YouTube 影片、PDF 報告，直接貼給大閘蟹，它幫你抓重點，不用逐字讀。</p>
+          <p class="text-gray-400 text-sm leading-relaxed">看到長文章、YouTube 影片、PDF 報告，直接貼給大閘蟹，它幫你抓重點，不用逐字讀。</p>
           <div class="mt-4 inline-flex items-center gap-1.5 bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1.5 rounded-full">📝 快速摘要</div>
         </div>
 
         <!-- Scenario 4: Telegram only, no LINE -->
-        <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
+        <div class="card-hover reveal bg-gray-900/60 rounded-2xl p-7 border border-gray-700/30">
           <div class="text-4xl mb-4">🌏</div>
           <h3 class="text-lg font-bold text-gray-900 mb-2">在你天天開著的 Telegram 裡</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">不是另一個要記得打開的 App。大閘蟹住在 Telegram，你天天都在那，門檻為零，隨傳隨到。</p>
+          <p class="text-gray-400 text-sm leading-relaxed">不是另一個要記得打開的 App。大閘蟹住在 Telegram，你天天都在那，門檻為零，隨傳隨到。</p>
           <div class="mt-4 inline-flex items-center gap-1.5 bg-[#229ED9]/10 text-[#229ED9] text-xs font-semibold px-3 py-1.5 rounded-full">💬 Telegram 原生</div>
         </div>
 
         <!-- Scenario 5 -->
-        <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
+        <div class="card-hover reveal bg-gray-900/60 rounded-2xl p-7 border border-gray-700/30">
           <div class="text-4xl mb-4">🌐</div>
           <h3 class="text-lg font-bold text-gray-900 mb-2">隨時翻譯，隨時搜尋</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">看到英文文件、日文新聞，直接丟給大閘蟹翻譯。或叫它搜尋最新資料，比 Google 快還更懂你要什麼。</p>
+          <p class="text-gray-400 text-sm leading-relaxed">看到英文文件、日文新聞，直接丟給大閘蟹翻譯。或叫它搜尋最新資料，比 Google 快還更懂你要什麼。</p>
           <div class="mt-4 inline-flex items-center gap-1.5 bg-green-50 text-green-600 text-xs font-semibold px-3 py-1.5 rounded-full">🌐 多語言支援</div>
         </div>
 
         <!-- Scenario 6 -->
-        <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
+        <div class="card-hover reveal bg-gray-900/60 rounded-2xl p-7 border border-gray-700/30">
           <div class="text-4xl mb-4">🤖</div>
           <h3 class="text-lg font-bold text-gray-900 mb-2">你說它學，越用越懂你</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">大閘蟹記得你的偏好、你的口吻、你常用的指令。越用越像你的專屬助理，不是通用機器人。</p>
+          <p class="text-gray-400 text-sm leading-relaxed">大閘蟹記得你的偏好、你的口吻、你常用的指令。越用越像你的專屬助理，不是通用機器人。</p>
           <div class="mt-4 inline-flex items-center gap-1.5 bg-orange-50 text-orange-600 text-xs font-semibold px-3 py-1.5 rounded-full">🧠 個人化記憶</div>
         </div>
       </div>
     </div>
+  </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
        FEATURES
   ════════════════════════════════════════════════════════════ -->
-  <section id="features" class="relative z-10 py-24 bg-white">
+  <section id="features" class="relative z-10 py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <p class="text-violet-600 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="features.label">WHAT'S INCLUDED</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-5" data-i18n="features.h2">9 種技能，開箱即用</h2>
+        <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="features.label">WHAT'S INCLUDED</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5" data-i18n="features.h2">9 種技能，開箱即用</h2>
         <p class="text-gray-600 text-lg max-w-xl mx-auto" data-i18n="features.sub">部署好就能直接用，不需要任何額外設定</p>
       </div>
 
       <!-- Skills grid: 9 static cards -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
         <!-- Skill 1 -->
-        <div class="card-hover reveal bg-gradient-to-br from-violet-50 to-white border border-violet-100 rounded-2xl p-6">
+        <div class="card-hover reveal bg-gradient-to-br from-violet-950/40 via-pink-950/20 to-gray-900/80 border border-violet-800/30 rounded-2xl p-6">
           <div class="flex items-start gap-4">
             <div class="text-3xl">🔍</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">DuckDuckGo 搜尋</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">不需要 API Key 的網路搜尋，隨時查最新資訊，不被封鎖。</p>
+              <h3 class="font-bold text-white mb-1">DuckDuckGo 搜尋</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">不需要 API Key 的網路搜尋，隨時查最新資訊，不被封鎖。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-violet-600 bg-violet-50 px-2.5 py-1 rounded-full">免費使用</span>
             </div>
           </div>
@@ -521,8 +523,8 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">🌤</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">天氣預報</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">支援全球城市即時天氣，傳城市名字就能查，免 API Key。</p>
+              <h3 class="font-bold text-white mb-1">天氣預報</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">支援全球城市即時天氣，傳城市名字就能查，免 API Key。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-sky-600 bg-sky-50 px-2.5 py-1 rounded-full">Open-Meteo</span>
             </div>
           </div>
@@ -533,8 +535,8 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">📝</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">文章摘要</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">貼網址或文字，秒出重點摘要，長文不再是負擔。</p>
+              <h3 class="font-bold text-white mb-1">文章摘要</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">貼網址或文字，秒出重點摘要，長文不再是負擔。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">任意格式</span>
             </div>
           </div>
@@ -545,8 +547,8 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">🌐</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">多語言翻譯</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">中英日韓全語系即時翻譯，自動判斷來源語言，不用指定。</p>
+              <h3 class="font-bold text-white mb-1">多語言翻譯</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">中英日韓全語系即時翻譯，自動判斷來源語言，不用指定。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-green-600 bg-green-50 px-2.5 py-1 rounded-full">40+ 語言</span>
             </div>
           </div>
@@ -557,8 +559,8 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">🎬</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">YouTube 字幕摘要</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">貼 YouTube 連結，自動抓字幕並整理重點，影片不用看完。</p>
+              <h3 class="font-bold text-white mb-1">YouTube 字幕摘要</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">貼 YouTube 連結，自動抓字幕並整理重點，影片不用看完。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-full">免費技能</span>
             </div>
           </div>
@@ -569,8 +571,8 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">📈</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">股票資訊</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">美股、台股即時報價，支援 Yahoo Finance 資料，不需額外 Key。</p>
+              <h3 class="font-bold text-white mb-1">股票資訊</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">美股、台股即時報價，支援 Yahoo Finance 資料，不需額外 Key。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">Yahoo Finance</span>
             </div>
           </div>
@@ -581,8 +583,8 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">💰</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">加密貨幣行情</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">BTC、ETH、主流山寨幣即時報價，設定警報，跌破才通知。</p>
+              <h3 class="font-bold text-white mb-1">加密貨幣行情</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">BTC、ETH、主流山寨幣即時報價，設定警報，跌破才通知。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-yellow-700 bg-yellow-50 px-2.5 py-1 rounded-full">即時報價</span>
             </div>
           </div>
@@ -593,20 +595,20 @@
           <div class="flex items-start gap-4">
             <div class="text-3xl">📰</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">新聞摘要</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">自動抓最新新聞並整理成每日簡報，科技、財經、國際都涵蓋。</p>
+              <h3 class="font-bold text-white mb-1">新聞摘要</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">自動抓最新新聞並整理成每日簡報，科技、財經、國際都涵蓋。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-full">每日推送</span>
             </div>
           </div>
         </div>
 
         <!-- Skill 9 -->
-        <div class="card-hover reveal bg-gradient-to-br from-violet-50 via-pink-50 to-white border border-violet-200 rounded-2xl p-6">
+        <div class="card-hover reveal bg-gradient-to-br from-violet-950/40 via-pink-950/20 to-gray-900/80 border border-violet-800/30 rounded-2xl p-6">
           <div class="flex items-start gap-4">
             <div class="text-3xl">🧰</div>
             <div>
-              <h3 class="font-bold text-gray-900 mb-1">自訂技能 (Skill Creator)</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">用 AI 自動生成新技能。告訴大閘蟹你要什麼功能，它幫你寫好安裝好。</p>
+              <h3 class="font-bold text-white mb-1">自訂技能 (Skill Creator)</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">用 AI 自動生成新技能。告訴大閘蟹你要什麼功能，它幫你寫好安裝好。</p>
               <span class="inline-block mt-2 text-xs font-semibold text-violet-600 bg-violet-50 px-2.5 py-1 rounded-full">無限擴充</span>
             </div>
           </div>
@@ -636,24 +638,22 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════
+  -- ═══════════════════════════════════════════════════════════
        PRICING
   ════════════════════════════════════════════════════════════ -->
-  <section id="pricing" class="relative z-10 py-24 bg-gray-50">
+  <section id="pricing" class="relative z-10 py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <p class="text-violet-600 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="pricing.label">PRICING</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-5" data-i18n="pricing.h2">選擇你的方案</h2>
-        <p class="text-gray-600 text-lg" data-i18n="pricing.sub">全人民幣計價，月繳，到期不續費自動停止</p>
+        <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="pricing.label">PRICING</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5" data-i18n="pricing.h2">選擇你的方案</h2>
+        <p class="text-gray-400 text-lg" data-i18n="pricing.sub">全人民幣計價，月繳，到期不續費自動停止</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 items-start">
 
         <!-- Plan 1: Starter -->
-        <div class="card-hover reveal bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-          <p class="text-gray-500 font-semibold text-sm mb-2">Starter</p>
+        <div class="card-hover reveal bg-gray-900 rounded-2xl p-8 border border-gray-700/50">
+          <p class="text-gray-400 font-semibold text-sm mb-2">Starter</p>
           <div class="flex items-end gap-1 mb-6">
             <span class="text-5xl font-black text-gray-900">¥199</span>
             <span class="text-gray-500 text-sm mb-2" data-i18n="pricing.mo">/月</span>
@@ -739,8 +739,8 @@
         </div>
 
         <!-- Plan 3: Pro -->
-        <div class="card-hover reveal bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
-          <p class="text-gray-500 font-semibold text-sm mb-2">Pro</p>
+        <div class="card-hover reveal bg-gray-900 rounded-2xl p-8 border border-gray-700/50">
+          <p class="text-gray-400 font-semibold text-sm mb-2">Pro</p>
           <div class="flex items-end gap-1 mb-6">
             <span class="text-5xl font-black text-gray-900">¥699</span>
             <span class="text-gray-500 text-sm mb-2" data-i18n="pricing.mo">/月</span>
@@ -793,171 +793,172 @@
         </p>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
        COMPARE
   ════════════════════════════════════════════════════════════ -->
-  <section id="compare" class="relative z-10 py-24 bg-white">
+  <section id="compare" class="relative z-10 py-24">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 reveal">
-        <p class="text-violet-600 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="compare.label">THE DIFFERENCE</p>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-5" data-i18n="compare.h2">大閘蟹 vs 一般 AI</h2>
-        <p class="text-gray-600 text-lg" data-i18n="compare.sub">ChatGPT、Claude 很強，但它們做不到這些</p>
+        <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="compare.label">THE DIFFERENCE</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5" data-i18n="compare.h2">大閘蟹 vs 一般 AI</h2>
+        <p class="text-gray-400 text-lg" data-i18n="compare.sub">ChatGPT、Claude 很強，但它們做不到這些</p>
       </div>
 
       <!-- Mobile cards (md:hidden) -->
       <div class="md:hidden space-y-4 reveal">
 
         <!-- Row 1 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">24/7 在線，不用手動開啟</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">24/7 在線，不用手動開啟</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">❌</span>
               <p class="text-xs text-gray-500 mt-1.5">等你去開</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">持續運作</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">持續運作</p>
             </div>
           </div>
         </div>
 
         <!-- Row 2 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">主動推送通知</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">主動推送通知</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">❌</span>
               <p class="text-xs text-gray-500 mt-1.5">被動回應</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">自動推送</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">自動推送</p>
             </div>
           </div>
         </div>
 
         <!-- Row 3 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">定時排程任務</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">定時排程任務</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">❌</span>
               <p class="text-xs text-gray-500 mt-1.5">不支援</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">每日早報</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">每日早報</p>
             </div>
           </div>
         </div>
 
         <!-- Row 4 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">長期記憶（跨對話）</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">長期記憶（跨對話）</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">⚠️</span>
               <p class="text-xs text-gray-500 mt-1.5">有限</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">完整記憶</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">完整記憶</p>
             </div>
           </div>
         </div>
 
         <!-- Row 5 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">住在 Telegram</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">住在 Telegram</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">❌</span>
               <p class="text-xs text-gray-500 mt-1.5">要開網頁</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">原生整合</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">原生整合</p>
             </div>
           </div>
         </div>
 
         <!-- Row 6 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">擴充技能</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">擴充技能</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">⚠️</span>
               <p class="text-xs text-gray-500 mt-1.5">Plugin 有限</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">無限擴充</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">無限擴充</p>
             </div>
           </div>
         </div>
 
         <!-- Row 7 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">自選 AI 模型</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">自選 AI 模型</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">❌</span>
               <p class="text-xs text-gray-500 mt-1.5">平台鎖定</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">自由切換</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">自由切換</p>
             </div>
           </div>
         </div>
 
         <!-- Row 8 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">個人化性格設定</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">個人化性格設定</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">⚠️</span>
               <p class="text-xs text-gray-500 mt-1.5">有限調整</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">完全客製</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">完全客製</p>
             </div>
           </div>
         </div>
 
         <!-- Row 9 -->
-        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-          <div class="bg-gray-50 px-5 py-3 font-semibold text-gray-800 text-sm">你的資料不送出去</div>
-          <div class="grid grid-cols-2 divide-x divide-gray-100">
+        <div class="bg-gray-900 border border-gray-700/50 rounded-2xl overflow-hidden">
+          <div class="bg-gray-800 px-5 py-3 font-semibold text-gray-200 text-sm">你的資料不送出去</div>
+          <div class="grid grid-cols-2 divide-x divide-gray-700/50">
             <div class="px-4 py-4 text-center">
               <p class="text-xs text-gray-400 mb-1.5">一般 AI</p>
               <span class="text-2xl">⚠️</span>
               <p class="text-xs text-gray-500 mt-1.5">平台保存</p>
             </div>
-            <div class="px-4 py-4 text-center bg-violet-50/50">
-              <p class="text-xs text-violet-600 font-semibold mb-1.5">大閘蟹</p>
+            <div class="px-4 py-4 text-center bg-violet-900/20">
+              <p class="text-xs text-violet-400 font-semibold mb-1.5">大閘蟹</p>
               <span class="text-2xl">✅</span>
-              <p class="text-xs text-violet-700 mt-1.5 font-medium">自主掌控</p>
+              <p class="text-xs text-violet-300 mt-1.5 font-medium">自主掌控</p>
             </div>
           </div>
         </div>
@@ -965,7 +966,7 @@
 
       <!-- Desktop table (hidden md:block) -->
       <div class="hidden md:block reveal">
-        <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+        <div class="rounded-2xl overflow-hidden border border-gray-700/50">
           <table class="w-full">
             <thead>
               <tr class="bg-gray-900 text-white">
@@ -975,57 +976,57 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">24/7 在線，不用手動開啟</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">24/7 在線，不用手動開啟</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">❌ 等你去開</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 持續運作</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 持續運作</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">主動推送通知</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">主動推送通知</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">❌ 被動回應</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 自動推送</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 自動推送</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">定時排程任務</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">定時排程任務</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">❌ 不支援</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 每日早報</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 每日早報</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">長期記憶（跨對話）</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">長期記憶（跨對話）</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">⚠️ 有限</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 完整記憶</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 完整記憶</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">住在 Telegram</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">住在 Telegram</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">❌ 要開網頁</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 原生整合</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 原生整合</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">擴充技能</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">擴充技能</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">⚠️ Plugin 有限</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 無限擴充</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 無限擴充</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">自選 AI 模型</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">自選 AI 模型</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">❌ 平台鎖定</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 自由切換</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 自由切換</td>
               </tr>
-              <tr class="compare-row border-b border-gray-100">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">個人化性格設定</td>
+              <tr class="compare-row border-b border-gray-800">
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">個人化性格設定</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">⚠️ 有限調整</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 完全客製</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 完全客製</td>
               </tr>
               <tr class="compare-row">
-                <td class="px-6 py-4 text-sm font-medium text-gray-800">你的資料不送出去</td>
+                <td class="px-6 py-4 text-sm font-medium text-gray-300">你的資料不送出去</td>
                 <td class="px-6 py-4 text-center text-gray-400 text-sm">⚠️ 平台保存</td>
-                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-700 bg-violet-50/50">✅ 自主掌控</td>
+                <td class="px-6 py-4 text-center text-sm font-semibold text-violet-300 bg-violet-900/20">✅ 自主掌控</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  </section>
+  n>
 
   <!-- ═══════════════════════════════════════════════════════════
        CTA
@@ -1037,7 +1038,8 @@
       <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-pink-600/20 blur-3xl"></div>
     </div>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-      <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-6" data-i18n="cta.label">GET STARTED</p>
+      <p class="text-violet-400 font-bold text-sm uppercase tracking-widest mb-4" data-i18n="cta.label">GET STARTED</p>
+      <p class="text-white/50 text-xl font-light italic mb-3">风浪越大，蟹越贵</p>
       <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight" data-i18n-html="cta.h2">
         讓 AI 替你工作，<br>
         <span style="background:linear-gradient(135deg,#a78bfa,#f472b6,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">從今天開始</span>
@@ -1064,7 +1066,7 @@
   ════════════════════════════════════════════════════════════ -->
   <footer class="relative z-10 bg-gray-950 text-gray-400 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="grid md:grid-cols-3 gap-10 mb-12">
 
         <!-- Logo + tagline -->
         <div class="md:col-span-1">
@@ -1072,7 +1074,7 @@
             <span class="text-2xl">🦀</span>
             <span class="text-white font-bold text-lg">大閘蟹</span>
           </div>
-          <p class="text-sm leading-relaxed text-gray-500">风浪越大，蟹越贵。<br>你的专属 AI，住在 Telegram 裡。</p>
+          <p class="text-sm leading-relaxed text-gray-500">风浪越大，蟹越贵。<br>你的專屬 AI，住在 Telegram 裡。</p>
         </div>
 
         <!-- Col 1: 產品 -->
@@ -1097,33 +1099,11 @@
           </ul>
         </div>
 
-        <!-- Col 3: 聯繫 -->
-        <div>
-          <h4 class="text-white font-semibold text-sm mb-4" data-i18n="footer.col3">聯繫</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li>
-              <a href="https://t.me/dazhaxi" target="_blank" class="hover:text-white transition-colors flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.33 13.982l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.818.577z"/></svg>
-                @dazhaxi
-              </a>
-            </li>
-          </ul>
-          <!-- Tech col info here -->
-          <h4 class="text-white font-semibold text-sm mt-6 mb-4" data-i18n="footer.col4">技術</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li class="text-gray-500">Telegram Bot</li>
-            <li class="text-gray-500">Cloud Hosting</li>
-            <li class="text-gray-500">OpenClaw</li>
-          </ul>
-        </div>
       </div>
 
       <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-sm text-gray-600" data-i18n="footer.copy">© 2026 大閘蟹. All rights reserved.</p>
-        <div class="flex items-center gap-1.5 text-xs text-gray-600">
-          <span>Powered by</span>
-          <span class="text-gray-400 font-medium">OpenClaw</span>
-        </div>
+        <a href="https://t.me/dazhaxi" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-gray-400 transition-colors"><svg class="w-4 h-4 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.33 13.982l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.818.577z"/></svg>@dazhaxi</a>
       </div>
     </div>
   </footer>
@@ -1136,11 +1116,11 @@
     const translations = {
       zh: {
         'nav.usecases':'使用情境','nav.features':'功能','nav.pricing':'方案',
-        'nav.guide':'步驟教學','nav.install':'安裝教學','nav.advanced':'進階功能',
+        'nav.guide':'步驟教學','nav.install':'安裝教學','nav.advanced':'進階功能','nav.faq':'常見問題',
         'nav.cta':'查看方案',
         'hero.badge':'AI Agent · Telegram',
         'hero.h1':'风浪越大，<br><span class="gradient-text">蟹越贵</span>',
-        'hero.sub':'当别人还在手动查资料，你的 AI 已经整理好放在 Telegram 里等你。<br><span class="font-semibold text-black">专属云端部署，24 小时不间断。</span>',
+        'hero.sub':'當別人還在手動查資料，你的 AI 已經整理好放在 Telegram 裡等你。<br><span class="font-semibold text-white">專屬雲端部署，24 小時不間斷。</span>',
         'hero.cta1':'選擇方案，立即開始','hero.cta2':'看看能做什麼',
         'hero.chat.name':'我的大閘蟹','hero.chat.online':'線上中',
         'hero.chat.time':'⏰ 早上 08:00 · 大閘蟹自動推送',
@@ -1148,7 +1128,7 @@
         'hero.chat.usermsg':'現在應該賣嗎？幫我分析',
         'stats.online':'持續在線','stats.skills':'內建技能','stats.deploy':'完成部署',
         'whatIs.label':'什麼是大閘蟹？',
-        'whatIs.h2':'不是工具，是你的<br><span class="gradient-text-2">专属数字雇员</span>',
+        'whatIs.h2':'不是工具，是你的<br><span class="gradient-text-2">專屬數字僱員</span>',
         'whatIs.sub':'大閘蟹把 AI 安裝在雲端伺服器，綁定你的 Telegram。從此，隨時傳一句話，事情就做完了。',
         'scenarios.label':'非大閘蟹不可',
         'scenarios.h2':'這些事，<span class="gradient-text">ChatGPT 做不到</span>',
@@ -1174,16 +1154,16 @@
         'cta.sub':'準備好你的 AI API Key，我們幫你在雲端把大閘蟹養好，交給你用。',
         'cta.note':'不知道怎麼弄？<a href="faq.html" class="underline hover:text-white">看常見問題</a>，或直接找我們聊。',
         'cta.btn1':'選擇方案，立即開始','cta.btn2':'💬 先聊聊再決定',
-        'footer.col1':'產品','footer.col2':'幫助','footer.col3':'聯繫','footer.col4':'技術',
+        'footer.col1':'產品','footer.col2':'幫助',
         'footer.copy':'© 2026 大閘蟹. All rights reserved.'
       },
       en: {
         'nav.usecases':'Use Cases','nav.features':'Features','nav.pricing':'Pricing',
-        'nav.guide':'Setup Guide','nav.install':'Install Guide','nav.advanced':'Advanced',
+        'nav.guide':'Setup Guide','nav.install':'Install Guide','nav.advanced':'Advanced','nav.faq':'FAQ',
         'nav.cta':'View Plans',
         'hero.badge':'AI Agent · Telegram',
         'hero.h1':'The Bigger the Storm,<br><span class="gradient-text">The Higher the Price</span>',
-        'hero.sub':'While others search manually, your AI has already organized everything in Telegram waiting for you.<br><span class="font-semibold text-black">Dedicated cloud deployment, 24/7 non-stop.</span>',
+        'hero.sub':'While others search manually, your AI has already organized everything in Telegram waiting for you.<br><span class="font-semibold text-white">Dedicated cloud deployment, 24/7 non-stop.</span>',
         'hero.cta1':'Get Started Now','hero.cta2':'See What It Can Do',
         'hero.chat.name':'My Da Zha Xie','hero.chat.online':'Online',
         'hero.chat.time':'⏰ 08:00 AM · Auto Push',
@@ -1217,7 +1197,7 @@
         'cta.sub':'Get your AI API Key ready, and we\'ll set up your Da Zha Xie in the cloud for you.',
         'cta.note':'Not sure how? <a href="faq.html" class="underline hover:text-white">Check the FAQ</a>, or contact us directly.',
         'cta.btn1':'Get Started Now','cta.btn2':'💬 Chat First',
-        'footer.col1':'Product','footer.col2':'Help','footer.col3':'Contact','footer.col4':'Tech',
+        'footer.col1':'Product','footer.col2':'Help',
         'footer.copy':'© 2026 Da Zha Xie. All rights reserved.'
       }
     };

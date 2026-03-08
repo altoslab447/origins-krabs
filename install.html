@@ -734,42 +734,63 @@
   </nav>
 
   <!-- ══ HEADER ══ -->
-  <header id="site-header">
-    <div class="container-wide header-inner">
-      <a href="./landing.html" class="logo">
-        <span class="logo-emoji">🦀</span>
-        <span class="logo-text">大閘蟹</span>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 border-b border-white/10" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="./landing.html" class="flex items-center gap-2 font-bold text-xl select-none">
+        <span class="text-2xl">🦀</span>
+        <span class="gradient-text">大閘蟹</span>
       </a>
-
-      <nav class="desktop-nav" aria-label="主導覽">
-        <a href="./landing.html#scenarios" class="nav-link">使用情境</a>
-        <a href="./landing.html#features" class="nav-link">功能</a>
-        <a href="./landing.html#pricing" class="nav-link">方案</a>
-        <a href="./guide.html" class="nav-link">步驟教學</a>
-        <a href="#" class="nav-link active" aria-current="page">安裝教學</a>
-        <a href="./advanced.html" class="nav-link">進階功能</a>
-        <a href="./faq.html" class="nav-link">FAQ</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
+        <a href="./landing.html#scenarios" class="hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+        <a href="./landing.html#features"  class="hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+        <a href="./landing.html#pricing"   class="hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+        <a href="./guide.html"    class="hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+        <a href="./install.html"  class="hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+        <a href="./advanced.html" class="hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+        <a href="./faq.html"      class="hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
       </nav>
-
-      <div class="header-right">
-        <button id="lang-btn" type="button" aria-label="切換語言">EN</button>
-        <button id="install-menu-btn" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="install-mobile-menu">
-          <span></span><span></span><span></span>
+      <div class="flex items-center gap-3">
+        <button id="lang-btn"
+          class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full border border-gray-600 text-xs font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+          EN
+        </button>
+        <a href="./landing.html#pricing"
+          class="hidden md:inline-flex gradient-bg text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
+          data-i18n="nav.cta">查看方案</a>
+        <button id="hamburger-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Menu">
+          <svg id="icon-hamburger" class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </button>
       </div>
     </div>
-
-    <!-- Mobile menu drawer -->
-    <nav id="install-mobile-menu" aria-label="行動導覽">
-      <a href="./landing.html#scenarios" class="mobile-nav-link">使用情境</a>
-      <a href="./landing.html#features" class="mobile-nav-link">功能</a>
-      <a href="./landing.html#pricing" class="mobile-nav-link">方案</a>
-      <a href="./guide.html" class="mobile-nav-link">步驟教學</a>
-      <a href="#" class="mobile-nav-link active" aria-current="page">安裝教學</a>
-      <a href="./advanced.html" class="mobile-nav-link">進階功能</a>
-      <a href="./faq.html" class="mobile-nav-link">FAQ</a>
-    </nav>
-  </header>
+  </div>
+</header>
+<div id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-gray-950 z-40 shadow-2xl flex flex-col pt-20 px-6 pb-8" style="transform:translateX(100%);transition:transform 0.3s ease;">
+  <nav class="flex flex-col gap-1 text-gray-200 font-medium text-base">
+    <a href="./landing.html#scenarios" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.usecases">使用情境</a>
+    <a href="./landing.html#features"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.features">功能</a>
+    <a href="./landing.html#pricing"   class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.pricing">方案</a>
+    <a href="./guide.html"    class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.guide">步驟教學</a>
+    <a href="./install.html"  class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.install">安裝教學</a>
+    <a href="./advanced.html" class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.advanced">進階功能</a>
+    <a href="./faq.html"      class="mobile-link py-3 border-b border-gray-800 hover:text-violet-400 transition-colors" data-i18n="nav.faq">常見問題</a>
+  </nav>
+  <div class="mt-6 flex flex-col gap-3">
+    <button id="lang-btn-mobile"
+      class="w-full py-2.5 rounded-full border border-gray-600 text-sm font-semibold text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-colors">
+      EN
+    </button>
+    <a href="./landing.html#pricing"
+      class="mobile-link w-full text-center gradient-bg text-white text-sm font-semibold px-5 py-3 rounded-full hover:opacity-90 transition-opacity"
+      data-i18n="nav.cta">查看方案</a>
+  </div>
+</div>
+<div id="drawer-overlay" class="hidden fixed inset-0 bg-black/50 z-30 md:hidden"></div>
 
   <!-- ══ HERO ══ -->
   <section class="hero">
@@ -1314,39 +1335,49 @@ journalctl -u openclaw -n 100</pre>
   </section>
 
   <!-- ══ FOOTER ══ -->
-  <footer>
-    <div class="footer-logo">🦀 大閘蟹</div>
-    <p class="footer-tagline">讓每個人都能擁有自己的 AI 助理</p>
-    <div class="footer-links">
-      <a href="./landing.html">首頁</a>
-      <a href="./guide.html">步驟教學</a>
-      <a href="#">安裝教學</a>
-      <a href="./advanced.html">進階功能</a>
-      <a href="./faq.html">FAQ</a>
+  <footer style="background:#050508;" class="relative z-10 text-gray-400 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🦀</span>
+          <span class="text-white font-bold text-lg">大閘蟹</span>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-500">风浪越大，蟹越贵。<br>你的專屬 AI，住在 Telegram 裡。</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">產品</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="./landing.html#features"  class="hover:text-white transition-colors">功能介紹</a></li>
+          <li><a href="./landing.html#pricing"   class="hover:text-white transition-colors">方案價格</a></li>
+          <li><a href="./landing.html#compare"   class="hover:text-white transition-colors">對比分析</a></li>
+          <li><a href="./landing.html#scenarios" class="hover:text-white transition-colors">使用情境</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">幫助</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="./guide.html"    class="hover:text-white transition-colors">步驟教學</a></li>
+          <li><a href="./install.html"  class="hover:text-white transition-colors">安裝教學</a></li>
+          <li><a href="./advanced.html" class="hover:text-white transition-colors">進階功能</a></li>
+          <li><a href="./faq.html"      class="hover:text-white transition-colors">常見問題</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="footer-copy">© 2026 大閘蟹. All rights reserved.</p>
-  </footer>
+    <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-gray-600">© 2026 大閘蟹. All rights reserved.</p>
+      <a href="https://t.me/dazhaxi" target="_blank" class="flex items-center gap-2 text-xs text-gray-600 hover:text-gray-400 transition-colors">
+        <svg class="w-4 h-4 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.33 13.982l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.818.577z"/></svg>
+        @dazhaxi
+      </a>
+    </div>
+  </div>
+</footer>
 
   <script>
-    // ── Header scroll shadow ──
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 10);
-    }, { passive: true });
-
-    // ── Mobile menu toggle ──
-    const menuBtn = document.getElementById('install-menu-btn');
-    const mobileMenu = document.getElementById('install-mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      menuBtn.classList.toggle('open', isOpen);
-      menuBtn.setAttribute('aria-expanded', isOpen);
-    });
-
     // ── Copy button ──
     function copyCode(btn) {
       const pre = btn.closest('.code-wrap').querySelector('pre');
-      // Strip HTML tags to get plain text
       const text = pre.innerText || pre.textContent;
       navigator.clipboard.writeText(text).then(() => {
         const original = btn.innerHTML;
@@ -1357,7 +1388,6 @@ journalctl -u openclaw -n 100</pre>
           btn.classList.remove('copied');
         }, 2000);
       }).catch(() => {
-        // Fallback for older browsers
         const range = document.createRange();
         range.selectNode(pre);
         window.getSelection().removeAllRanges();
@@ -1383,13 +1413,11 @@ journalctl -u openclaw -n 100</pre>
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
     sections.forEach(s => observer.observe(s));
 
     // ── Quick jump dot active state ──
     const stepIds = ['step1','step2','step3','step4','step5','step6','step7'];
     const dots = document.querySelectorAll('.qj-dot');
-
     const stepObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const idx = stepIds.indexOf(entry.target.id);
@@ -1398,20 +1426,25 @@ journalctl -u openclaw -n 100</pre>
         }
       });
     }, { threshold: 0.4 });
-
     stepIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) stepObserver.observe(el);
     });
 
-    // ── Lang switcher (toggle placeholder) ──
-    const langBtn = document.getElementById('lang-btn');
-    let isEn = false;
-    langBtn.addEventListener('click', () => {
-      isEn = !isEn;
-      langBtn.textContent = isEn ? '中' : 'EN';
-      document.documentElement.lang = isEn ? 'en' : 'zh-Hant';
-    });
+    // ── Mobile menu & lang switcher ──
+    const hamburger=document.getElementById('hamburger-btn'),mobileMenu=document.getElementById('mobile-menu'),overlay=document.getElementById('drawer-overlay'),iconOpen=document.getElementById('icon-hamburger'),iconClose=document.getElementById('icon-close');
+    function openMenu(){mobileMenu.style.transform='translateX(0)';overlay.classList.remove('hidden');iconOpen.classList.add('hidden');iconClose.classList.remove('hidden');document.body.style.overflow='hidden';}
+    function closeMenu(){mobileMenu.style.transform='translateX(100%)';overlay.classList.add('hidden');iconOpen.classList.remove('hidden');iconClose.classList.add('hidden');document.body.style.overflow='';}
+    if(hamburger)hamburger.addEventListener('click',()=>{mobileMenu.style.transform==='translateX(0)'?closeMenu():openMenu();});
+    if(overlay)overlay.addEventListener('click',closeMenu);
+    document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMenu));
+    let currentLang=localStorage.getItem('dzx-lang')||'zh';
+    const navT={zh:{'nav.usecases':'使用情境','nav.features':'功能','nav.pricing':'方案','nav.guide':'步驟教學','nav.install':'安裝教學','nav.advanced':'進階功能','nav.faq':'常見問題','nav.cta':'查看方案'},en:{'nav.usecases':'Use Cases','nav.features':'Features','nav.pricing':'Pricing','nav.guide':'Setup Guide','nav.install':'Install Guide','nav.advanced':'Advanced','nav.faq':'FAQ','nav.cta':'View Plans'}};
+    function applyNavLang(lang){const t=navT[lang];document.querySelectorAll('[data-i18n]').forEach(el=>{if(t[el.getAttribute('data-i18n')])el.textContent=t[el.getAttribute('data-i18n')];});const next=lang==='zh'?'EN':'中';const b=document.getElementById('lang-btn');const bm=document.getElementById('lang-btn-mobile');if(b)b.textContent=next;if(bm)bm.textContent=next;}
+    function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('dzx-lang',currentLang);applyNavLang(currentLang);}
+    const lb=document.getElementById('lang-btn'),lbm=document.getElementById('lang-btn-mobile');
+    if(lb)lb.addEventListener('click',toggleLang);if(lbm)lbm.addEventListener('click',toggleLang);
+    applyNavLang(currentLang);
   </script>
 </body>
 </html>
